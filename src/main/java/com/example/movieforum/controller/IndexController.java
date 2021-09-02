@@ -18,4 +18,6 @@ public class IndexController {
     public String index(Model model){
         return "index"; //打开网页没用跳转到学生列表路径 studentList
     }
+
+
 }
