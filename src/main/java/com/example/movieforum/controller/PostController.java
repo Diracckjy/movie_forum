@@ -21,6 +21,29 @@ public class PostController {
     @Autowired
     PostMapper postMapper;
 
+
+
+
+    //帖子详情页面    xxxxx/articleDetail?id=1000
+    @RequestMapping("/postDetail")
+    public String postDetail(Model model,int id){
+        Post post = postMapper.selectById(id);//根据主键查询
+        model.addAttribute("obj",post); //绑定参数
+
+
+        QueryWrapper<Post> qw=new QueryWrapper<Post>();
+        qw.orderByDesc("id"); //根据id降序排列
+        List<Post> postList = postMapper.selectList(qw);
+        model.addAttribute("dataList",postList);
+
+
+        return "postDetail";
+    }
+
+
+
+
+
     //查询信息列表
     @RequestMapping("/postList")
     public String postList(Model model){
