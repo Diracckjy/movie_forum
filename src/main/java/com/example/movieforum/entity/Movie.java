@@ -18,10 +18,10 @@ public class Movie {
         private String years;    //年代
         private String originplace;    //产地
         private String kinds;    //类别
-        private Integer language;    //语言
+        private String language;    //语言
         private String subtitles;    //字幕
         private String data;    //上映日期
-        private String IMDbscore;    //IMDb评分
+        private String imdbscore;    //IMDb评分
         private String dbscore;    //豆瓣评分
         private String time;    //片长
         private String director;    //导演
