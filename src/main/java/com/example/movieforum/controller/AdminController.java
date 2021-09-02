@@ -13,8 +13,14 @@ import javax.servlet.http.HttpSession;
 public class AdminController {
 
     //进入后台首页
-    @RequestMapping("/admin_index")
-    public String admin_index(Model model){
+    @RequestMapping("/")
+    public String admin(Model model){
+        return "redirect:adminIndex";
+    }
+
+    //进入后台首页
+    @RequestMapping("/adminIndex")
+    public String adminIndex(Model model){
         return "admin/adminIndex";
     }
 

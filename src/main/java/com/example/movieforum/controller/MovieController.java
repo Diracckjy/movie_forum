@@ -73,7 +73,7 @@ public class MovieController {
     @RequestMapping("/movieUpdate")
     public String movieUpdate(Model model, Movie movie){
         movieMapper.updateById(movie);
-        return "redirect:movieList";
+        return "redirect:movieList?p=1";
     }
 
 
