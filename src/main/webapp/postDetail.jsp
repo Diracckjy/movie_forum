@@ -76,27 +76,27 @@
         <tbody>
         <tr class="layui-bg-blue">
             <th>编号</th>
-            <th>主题</th>
-            <th>片名</th>
+            <th>用户姓名</th>
             <th>内容</th>
             <th>创建时间</th>
-            <th>操作</th>
+            <th>对应帖子的编号</th>
+<%--            <th>操作</th>--%>
         </tr>
         <c:forEach items="${dataList}" var="v">
             <tr>
                 <td>${v.id}</td>
-                <td>${v.title}</td>
                 <td>${v.name}</td>
                 <td>${v.content}</td>
                 <td>${v.createtime}</td>
-                <td>
-                    <a href="${ctx}/user/postDelete?id=${v.id}" class="layui-btn layui-btn-danger layui-btn-sm">
-                        <i class="layui-icon layui-icon-delete"></i> 删除
-                    </a>
-                    <a href="${ctx}/user/postEdit?id=${v.id}" class="layui-btn layui-btn-info layui-btn-sm">
-                        <i class="layui-icon layui-icon-edit"></i> 修改
-                    </a>
-                </td>
+                <td>${v.postid}</td>
+<%--                <td>--%>
+<%--                    <a href="${ctx}/user/postDelete?id=${v.id}" class="layui-btn layui-btn-danger layui-btn-sm">--%>
+<%--                        <i class="layui-icon layui-icon-delete"></i> 删除--%>
+<%--                    </a>--%>
+<%--                    <a href="${ctx}/user/postEdit?id=${v.id}" class="layui-btn layui-btn-info layui-btn-sm">--%>
+<%--                        <i class="layui-icon layui-icon-edit"></i> 修改--%>
+<%--                    </a>--%>
+<%--                </td>--%>
             </tr>
         </c:forEach>
         </tbody>

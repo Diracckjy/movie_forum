@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 //import com.example.movieforum.entity.Comments;
 import com.example.movieforum.entity.Post;
 //import com.example.movieforum.mapper.CommentsMapper;
+import com.example.movieforum.entity.PostComments;
+import com.example.movieforum.mapper.PostCommentsMapper;
 import com.example.movieforum.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,8 @@ public class PostController {
     // 创建对象  依赖注入
     @Autowired
     PostMapper postMapper;
-
+    @Autowired
+    PostCommentsMapper postcommentsMapper;
 
 
 
@@ -31,9 +34,11 @@ public class PostController {
         model.addAttribute("obj",post); //绑定参数
 
 
-        QueryWrapper<Post> qw=new QueryWrapper<Post>();
+        QueryWrapper<PostComments> qw=new QueryWrapper<PostComments>();
         qw.orderByDesc("id"); //根据id降序排列
-        List<Post> postList = postMapper.selectList(qw);
+       // qw.inSql("id","select id from table where id  id");
+        qw.eq("postid",id);
+        List<PostComments> postList = postcommentsMapper.selectList(qw);
         model.addAttribute("dataList",postList);
 
 
