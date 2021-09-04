@@ -6,7 +6,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <title>成绩信息修盖</title>
+    <title>电影信息修盖</title>
     <!--引入layui 样式-->
     <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
     <!--引入layui js-->

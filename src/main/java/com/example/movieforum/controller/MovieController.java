@@ -10,24 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller  //加这个注解代表他是一个请求处理类
 @CrossOrigin  //允许跨域请求   允许别人调用这个接口
-
 public class MovieController {
-
-    // 创建对象  依赖注入
     @Autowired
     MovieMapper movieMapper;
 
     @Autowired
     MovieCommentsMapper movieCommentsMapper;
 
-
-    //电影信息展示
+    // 电影详情
     @RequestMapping("/movie")
     public String movie(Model model, Integer id) {
 //        QueryWrapper<Movie> qw=new QueryWrapper<Movie>();
@@ -46,4 +41,5 @@ public class MovieController {
         model.addAttribute("movieCommentsList", movieCommentsList);
         return "movie";
     }
+
 }

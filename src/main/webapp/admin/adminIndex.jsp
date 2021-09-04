@@ -77,7 +77,7 @@
                     <a href="javascript:;">电影管理</a>
                     <dl class="layui-nav-child">
                         <dd><a target="adminIndex" href="${ctx}/admin/movieList?p=1">电影列表</a></dd>
-                        <dd><a target="adminIndex" href="javascript:;">电影添加</a></dd>
+                        <dd><a target="adminIndex" href="${ctx}/admin/movieAdd">电影添加</a></dd>
                     </dl>
                 </li>
 
@@ -91,7 +91,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">帖子管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a target="adminIndex" href="javascript:;">帖子列表</a></dd>
+                        <dd><a target="adminIndex" href="${ctx}/user/postList">帖子列表</a></dd>
                     </dl>
                 </li>
             </ul>

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 //import com.example.movieforum.entity.Comments;
 import com.example.movieforum.entity.Post;
 //import com.example.movieforum.mapper.CommentsMapper;
+import com.example.movieforum.mapper.MovieMapper;
 import com.example.movieforum.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.movieforum.entity.Post;
@@ -36,7 +37,16 @@ public class IndexController {
     @Autowired
     PostMapper postMapper;
 
+    @Autowired
+    MovieMapper movieMapper;
 
+    //帖子详情页面    xxxxx/articleDetail?id=1000
+    @RequestMapping("/postDetail")
+    public String postDetail(Model model,int id){
+        Post post = postMapper.selectById(id);//根据主键查询
+        model.addAttribute("obj",post); //绑定参数
+        return "postDetail";
+    }
     // 启动系统默认进入首页  / 代表首页
     @RequestMapping("/")
     public String start(Model model){
@@ -45,6 +55,11 @@ public class IndexController {
 
     @RequestMapping("/index")
     public String index(Model model){
+        String sql = "select *  from movie_info order by rand() limit 8";
+        // 随机查
+        List<Map> movieList = movieMapper.commonSelect(sql);
+        model.addAttribute("movieList", movieList);
+
         return "index"; //打开网页没用跳转到学生列表路径 studentList
     }
 }

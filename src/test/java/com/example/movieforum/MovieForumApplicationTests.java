@@ -63,4 +63,12 @@ class MovieForumApplicationTests {
         System.out.println("map = " + map);
     }
 
+    @Test
+    void 测试随机获取(){
+        String sql = "select *  from movie_info order by rand() limit 20";
+        List<Map> movieList = movieMapper.commonSelect(sql);
+//        System.out.println("movieList = " + movieList.get(0).get("imageurl"));
+
+    }
+
 }
