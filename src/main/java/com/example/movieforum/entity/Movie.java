@@ -29,4 +29,19 @@ public class Movie {
     private String player;    //主演
     private String label;    //标签
     private String introduction;    //简介
+
+    public String getTranslatename() {
+        return null;
+    }
+
+    public String getName() {
+        return null;
+    }
+
+    public void setName(String name) {
+    }
+
+    public void setTranslatename(String translatename) {
+
+    }
 }

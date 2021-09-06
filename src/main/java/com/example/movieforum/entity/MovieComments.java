@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @TableName("movie_comments_info")  //指明需要操作的数据库表是movie_comments_info，电影留言信息表
-@Data                     //自动生成get，set等方法
+@Data                    //自动生成get，set等方法
 //电影留言实体类
 public class MovieComments {
     //这里的int类型使用Java自带的Integer类型，因为int有默认值为0，在数据库操作时可能会出错

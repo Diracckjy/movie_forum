@@ -1,14 +1,11 @@
 package com.example.movieforum.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-//import com.example.movieforum.entity.Comments;
 import com.example.movieforum.entity.Movie;
 import com.example.movieforum.entity.Post;
-//import com.example.movieforum.mapper.CommentsMapper;
 import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.MovieMapper;
 import com.example.movieforum.mapper.PostMapper;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +13,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
+
+//import com.example.movieforum.entity.Comments;
+//import com.example.movieforum.mapper.CommentsMapper;
 
 @Controller
 @CrossOrigin

@@ -48,12 +48,12 @@
                 <input type="text" name="content" value="${obj.content}" required  lay-verify="required" placeholder="请输入帖子内容" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">创建时间</label>
-            <div class="layui-input-block">
-                <input type="text" name="createtime" value="${obj.createtime}" required  lay-verify="date" placeholder="请输入创建时间" autocomplete="off" class="layui-input">
-            </div>
-        </div>
+<%--        <div class="layui-form-item">--%>
+<%--            <label class="layui-form-label">创建时间</label>--%>
+<%--            <div class="layui-input-block">--%>
+<%--                <input type="text" name="createtime" value="${obj.createtime}" required  lay-verify="date" placeholder="请输入创建时间" autocomplete="off" class="layui-input">--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
         <div class="layui-form-item">
             <div class="layui-input-block">

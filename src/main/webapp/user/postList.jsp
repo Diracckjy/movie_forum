@@ -24,6 +24,7 @@
         <tbody>
         <tr class="layui-bg-blue">
             <th>编号</th>
+            <th>用户编号</th>
             <th>标题</th>
             <th>片名</th>
             <th>作者名</th>
@@ -34,6 +35,7 @@
         <c:forEach items="${dataList}" var="v">
             <tr>
                 <td>${v.id}</td>
+                <td>${v.userid}</td>
                 <td>${v.title}</td>
                 <td>${v.moviename}</td>
                 <td>${v.name}</td>
