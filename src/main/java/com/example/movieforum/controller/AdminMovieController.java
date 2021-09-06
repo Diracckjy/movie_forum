@@ -108,4 +108,12 @@ public class AdminMovieController {
         movieMapper.updateById(movie);
         return "redirect:movieList?p=1";
     }
+
+    // 管理员删除电影
+    @RequestMapping("/movieDelete")
+    public String movieDelete(Model model, Integer id) throws IllegalAccessException {
+        movieMapper.deleteById(id);
+        return "redirect:movieList?p=1";
+    }
+
 }
