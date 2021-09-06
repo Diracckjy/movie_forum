@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.movieforum.entity.Movie;
 import com.example.movieforum.entity.Post;
 //import com.example.movieforum.mapper.CommentsMapper;
+import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.MovieMapper;
 import com.example.movieforum.mapper.PostMapper;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +42,14 @@ public class IndexController {
 
     // 进入首页
     @RequestMapping("/index")
-    public String index(Model model){
+    public String index(Model model, User user){
+
+        boolean hasuser = false;
+        if(user.getId() != 0){
+            hasuser = true;
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("hasuser", hasuser);
         // 随机获取8部电影
         ArrayList<Movie> movies = getMoviesRandom(8);
         model.addAttribute("movies", movies);
@@ -49,7 +58,11 @@ public class IndexController {
         ArrayList<Movie> movies2 = getMoviesRandom(10);
         model.addAttribute("movies2", movies2);
 
-        return "index"; //
+        // 随机获取4个帖子
+        ArrayList<Post> posts = getPosts(4);
+        model.addAttribute("posts", posts);
+
+        return "index"; // 返回首页
     }
 
     // 处理电影片名和译名
@@ -88,6 +101,29 @@ public class IndexController {
             movies.add(parseMovieName(movieList.get(tmp)));
         }
         return movies;
+    }
+
+    // 随机获取count个帖子
+    private ArrayList<Post> getPosts(Integer count){
+        QueryWrapper<Post> qw = new QueryWrapper<Post>();
+        // 查出所有帖子
+        List<Post> postList = postMapper.selectList(qw);
+        Random random = new Random();
+
+        ArrayList<Post> posts = new ArrayList<Post>();
+        // 随机获取count个帖子
+        int size = postList.size();
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < count; i++) {
+            // 只用nextInt()会出现重复
+            int tmp = random.nextInt(size);
+            while (set.contains(tmp)){
+                tmp = random.nextInt(size);
+            }
+            set.add(tmp);
+            posts.add(postList.get(tmp));
+        }
+        return posts;
     }
 
 }

@@ -26,82 +26,18 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="${ctx}/index">首页</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Genre <b
-                                        class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Action</a></li>
-                                                <li><a href="genre.html">Biography</a></li>
-                                                <li><a href="genre.html">Crime</a></li>
-                                                <li><a href="genre.html">Family</a></li>
-                                                <li><a href="horror.html">Horror</a></li>
-                                                <li><a href="genre.html">Romance</a></li>
-                                                <li><a href="genre.html">Sports</a></li>
-                                                <li><a href="genre.html">War</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Adventure</a></li>
-                                                <li><a href="comedy.html">Comedy</a></li>
-                                                <li><a href="genre.html">Documentary</a></li>
-                                                <li><a href="genre.html">Fantasy</a></li>
-                                                <li><a href="genre.html">Thriller</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Animation</a></li>
-                                                <li><a href="genre.html">Costume</a></li>
-                                                <li><a href="genre.html">Drama</a></li>
-                                                <li><a href="genre.html">History</a></li>
-                                                <li><a href="genre.html">Musical</a></li>
-                                                <li><a href="genre.html">Psychological</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="series.html">tv - series</a></li>
-                            <li><a href="news.html">news</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Country <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Asia</a></li>
-                                                <li><a href="genre.html">France</a></li>
-                                                <li><a href="genre.html">Taiwan</a></li>
-                                                <li><a href="genre.html">United States</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">China</a></li>
-                                                <li><a href="genre.html">HongCong</a></li>
-                                                <li><a href="genre.html">Japan</a></li>
-                                                <li><a href="genre.html">Thailand</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Euro</a></li>
-                                                <li><a href="genre.html">India</a></li>
-                                                <li><a href="genre.html">Korea</a></li>
-                                                <li><a href="genre.html">United Kingdom</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="list.html">A - z list</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li></li>
+                            <li><a href="news.html">个人主页</a></li>
+                            <li><a href="contact.html">联系我们</a></li>
+                            <li>&nbsp;</li>
+                            <c:choose>
+                                <c:when test="${hasuser == true}">    <!--如果 -->
+                                    <li>${user.name}</li>
+                                </c:when>
+                                <c:otherwise>  <!--否则 -->
+                                    <li><a href="/login">请登录</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
 
                     </div>
@@ -126,7 +62,7 @@
         <!--//header-w3l-->
         <!--/banner-info-->
         <div class="baner-info">
-            <h3>最新 <span>最</span>热 <span>电</span>影</h3>
+            <h3>最<span>新</span> 最<span>热</span> 电影</h3>
             <h4>属于你的影视空间</h4>
             <%--            <a class="w3_play_icon1" href="#small-dialog1">--%>
             <%--                Watch Trailer--%>
@@ -143,28 +79,12 @@
         <div class="col-md-6 wthree_agile_login">
             <ul>
                 <li><i class="fa fa-phone" aria-hidden="true"></i> (+000) 009 455 4088</li>
-                <li><a href="#" class="login" data-toggle="modal" data-target="#myModal4">Login</a></li>
-                <li><a href="#" class="login reg" data-toggle="modal" data-target="#myModal5">Register</a></li>
+<%--                <li><a href="${ctx}/login" class="login" data-toggle="modal" data-target="#myModal4">登录</a></li>--%>
+<%--                <li><a href="${ctx}/login" class="login reg" data-toggle="modal" data-target="#myModal5">注册</a></li>--%>
+                <li><a href="${ctx}/login" class="login" >登录</a></li>
+                <li><a href="${ctx}/login" class="login reg" >注册</a></li>
 
             </ul>
-        </div>
-        <div class="col-md-6 wthree_share_agile">
-
-            <div class="single-agile-shar-buttons">
-                <ul>
-                    <li>
-                        <div class="fb-like" data-href="" data-layout="button_count" data-action="like"
-                             data-size="small" data-show-faces="false" data-share="false"></div>
-
-                    </li>
-                    <li>
-                        <div class="fb-share-button" data-href="" data-layout="button_count" data-size="small"
-                             data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
-                                                          href="">Share</a></div>
-                    </li>
-
-                </ul>
-            </div>
         </div>
     </div>
 </div>

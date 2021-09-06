@@ -26,7 +26,7 @@
 <div class="layui-layout layui-layout-admin">
     <!-- 头部区域（可配合layui 已有的水平导航） start-->
     <div class="layui-header">
-        <div class="layui-logo layui-hide-xs layui-bg-black">游戏贴吧后台</div>
+        <div class="layui-logo layui-hide-xs layui-bg-black">七零八落影视后台</div>
 
         <!-- 头部区域（可配合layui 已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
@@ -36,34 +36,6 @@
             </li>
 
             <li class="layui-nav-item layui-hide-xs"><a href="${ctx}/studentIndex" target="_blank">系統首页</a></li>
-            <li class="layui-nav-item layui-hide-xs"><a href="">nav 2</a></li>
-            <li class="layui-nav-item layui-hide-xs"><a href="">nav 3</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">nav groups</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">menu 11</a></dd>
-                    <dd><a href="">menu 22</a></dd>
-                    <dd><a href="">menu 33</a></dd>
-                </dl>
-            </li>
-        </ul>
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-                <a href="javascript:;">
-                    <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
-                    ${sessionScope.adminname}
-                </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">Your Profile</a></dd>
-                    <dd><a href="">Settings</a></dd>
-                    <dd><a href="${ctx}/admin/loginOut">退出登录</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
-                <a href="javascript:;">
-                    <i class="layui-icon layui-icon-more-vertical"></i>
-                </a>
-            </li>
         </ul>
     </div>
     <!-- 头部区域（可配合layui 已有的水平导航） end -->
@@ -74,14 +46,6 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:;">用户信息管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a target="adminIndex" href="${ctx}/userList?p=1">用户信息列表</a></dd>
-                        <dd><a target="adminIndex" href="${ctx}/userAdd">新用户添加</a></dd>
-                    </dl>
-                </li>
-
-                <li class="layui-nav-item layui-nav-itemed">
                     <a href="javascript:;">电影管理</a>
                     <dl class="layui-nav-child">
                         <dd><a target="adminIndex" href="${ctx}/admin/movieList?p=1">电影列表</a></dd>
@@ -89,10 +53,11 @@
                     </dl>
                 </li>
 
-                <li class="layui-nav-item ">
-                    <a class="" href="javascript:;">用户信息管理</a>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户信息管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a target="adminIndex" href="javascript;">用户信息列表</a></dd>
+                        <dd><a target="adminIndex" href="${ctx}/userList?p=1">用户信息列表</a></dd>
+                        <dd><a target="adminIndex" href="${ctx}/userAdd">新用户添加</a></dd>
                     </dl>
                 </li>
 

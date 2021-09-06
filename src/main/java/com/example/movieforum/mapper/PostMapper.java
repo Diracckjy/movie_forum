@@ -1,7 +1,9 @@
 package com.example.movieforum.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 //import com.example.movieforum.entity.Comments;
+import com.example.movieforum.entity.Movie;
 import com.example.movieforum.entity.Post;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,7 +25,6 @@ public interface PostMapper extends BaseMapper<Post> {
     public List<Map> commonSelect(@Param("sql") String sql);
 
 
-
     /**
      * 公共增加刪除修改方法
      * @param sql  要查询的sql语句
@@ -31,4 +32,5 @@ public interface PostMapper extends BaseMapper<Post> {
     @Update("${sql}")
     public int commonExecute(@Param("sql") String sql);
 
+//    void selectList(QueryWrapper<Movie> qw);
 }
