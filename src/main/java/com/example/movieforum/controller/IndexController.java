@@ -53,15 +53,11 @@ public class IndexController {
         return "redirect:index"; //打开网页没用跳转到学生列表路径 studentList
     }
 
-    @RequestMapping("/index")
-    public String index(Model model){
-        String sql = "select *  from movie_info order by rand() limit 8";
-        // 随机查
-        List<Map> movieList = movieMapper.commonSelect(sql);
-        model.addAttribute("movieList", movieList);
-
-        return "index"; //打开网页没用跳转到学生列表路径 studentList
-    }
+//    @RequestMapping("/login")
+//    public String index(Model model){
+//
+//        return "login"; //打开网页没用跳转到学生列表路径 studentList
+//    }
 }
 /**
  * 【完善好 刚才的功能  包括 导航条更新】
