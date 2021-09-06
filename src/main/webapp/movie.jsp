@@ -121,14 +121,12 @@
             <table class="layui-table">
                 <tbody>
                 <tr class="layui-bg-blue">
-                    <th>编号</th>
                     <th>用户名</th>
                     <th>留言内容</th>
                     <th>发布时间</th>
                 </tr>
                 <c:forEach items="${movieCommentsList}" var="v">
                     <tr>
-                        <td>${v.id}</td>
                         <td>${v.username}</td>
                         <td>${v.context}</td>
                         <td>${v.time}</td>
@@ -136,6 +134,45 @@
                 </c:forEach>
                 </tbody>
             </table>
+
+
+
+
+
+
+            <div class="layui-container" style="margin-top: 50px;">
+                <form class="layui-form  layui-form-pane" method="post"
+                      action="${ctx}/moviecommentsadd?movieid=50&userid=1&username=zhang">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">留言内容</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="context" required  lay-verify="required" placeholder="请输入留言内容" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即留言</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+
+                <script>
+                    layui.use('form', function(){
+                        var form = layui.form;
+
+                        //监听提交
+                        form.on('submit(formDemo)', function(data){
+                            // layer.msg(JSON.stringify(data.field));
+                            return true;
+                        });
+                    });
+                </script>
+
+            </div>
+
 
 
 

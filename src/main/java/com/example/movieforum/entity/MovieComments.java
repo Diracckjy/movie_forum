@@ -13,7 +13,19 @@ public class MovieComments {
     @TableId(type = IdType.AUTO)   //设置主键自动递增
     private Integer id;    //电影留言ID
     private Integer movieid;    //电影ID
+    private Integer userid;    //用户留言ID
     private String username;    //发表留言用户的用户名
     private String context;    //留言内容
     private String time;    //留言发表时间
+
+//    public MovieComments(Integer movieid, Integer userid, String username, String context){    //构造函数
+//        this.movieid=movieid;
+//        this.userid=userid;
+//        this.username=username;
+//        this.context = context;
+//    }
+
 }
+
+
+
