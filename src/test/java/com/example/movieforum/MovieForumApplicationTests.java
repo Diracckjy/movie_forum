@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Field;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootTest
 class MovieForumApplicationTests {
@@ -65,10 +63,54 @@ class MovieForumApplicationTests {
 
     @Test
     void 测试随机获取(){
-        String sql = "select *  from movie_info order by rand() limit 20";
-        List<Map> movieList = movieMapper.commonSelect(sql);
-//        System.out.println("movieList = " + movieList.get(0).get("imageurl"));
+        QueryWrapper<Movie> qw = new QueryWrapper<Movie>();
+        List<Movie> movieList = movieMapper.selectList(qw);
+        Random random = new Random();
+        ArrayList<Movie> movies = new ArrayList<>();
 
+        // 随机获取8部电影
+        int size = movieList.size();
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < 8; i++) {
+            // 只用nextInt()会出现重复
+            int tmp = random.nextInt(size);
+            while (set.contains(tmp)){
+                tmp = random.nextInt(size);
+            }
+            set.add(tmp);
+            // 处理电影片名和译名
+            Movie tmp_movie = movieList.get(tmp);
+            //片名
+            String name = tmp_movie.getName();
+            name = name.split("/")[0];
+            //译名
+            String translatename = tmp_movie.getTranslatename();
+            translatename = translatename.split("/")[0];
+
+            tmp_movie.setName(name);
+            tmp_movie.setTranslatename(translatename);
+
+            System.out.println("tmp_movie = " + tmp_movie);
+
+            movies.add(tmp_movie);
+        }
+
+        // 随机获取10部电影
+//        ArrayList<Movie> movies2 = new ArrayList<>();
+//        set.clear();
+//        for (int i = 0; i < 10; i++) {
+//            // 只用nextInt()会出现重复
+//            int tmp = random.nextInt(size);
+//            while (set.contains(tmp)){
+//                tmp = random.nextInt(size);
+//            }
+//            set.add(tmp);
+//            // 处理电影名称和日期
+//            Movie tmp_movie = movieList.get(tmp);
+//            String name = tmp_movie.getName();
+//
+//            movies2.add(tmp_movie);
+//        }
     }
 
 }
