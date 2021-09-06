@@ -23,14 +23,20 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">帖子主题</label>
+            <label class="layui-form-label">帖子标题</label>
             <div class="layui-input-block">
                 <input type="text" name="title" value="${obj.title}" required  lay-verify="required" placeholder="请输入帖子主题" autocomplete="off" class="layui-input">
             </div>
         </div>
 
-        <div class="layui-form-item">
+              <div class="layui-form-item">
             <label class="layui-form-label">片名</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" value="${obj.moviename}" required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">作者名</label>
             <div class="layui-input-block">
                 <input type="text" name="name" value="${obj.name}" required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
             </div>
@@ -45,7 +51,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">创建时间</label>
             <div class="layui-input-block">
-                <input type="text" name="createtime" value="${obj.createtime}" required  lay-verify="number" placeholder="请输入创建时间" autocomplete="off" class="layui-input">
+                <input type="text" name="createtime" value="${obj.createtime}" required  lay-verify="date" placeholder="请输入创建时间" autocomplete="off" class="layui-input">
             </div>
         </div>
 

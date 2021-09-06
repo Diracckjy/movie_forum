@@ -34,13 +34,15 @@
     </div>
     <div class="layui-elem-quote" style="margin: 20px;padding-left: 200px;">
 <%--        <h3>所属分类：热门游戏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片名： ${obj.name}--%>
-            <h3>片名： ${obj.name}
+            <h3>片名： ${obj.moviename}
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                作者：${obj.name}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 发布时间:${obj.createtime}</h3>
     </div>
     <!--下面是详情内容 start -->
@@ -69,26 +71,29 @@
 
 
 
-
+<div class="layui-container">
+    <div>
+        <h1 style="margin: 20px; text-align: center;">以下为用户对帖子的评论</h1>
+    </div>
 
 <div class="layui-fluid">
     <table class="layui-table">
         <tbody>
         <tr class="layui-bg-blue">
-            <th>编号</th>
+<%--            <th>编号</th>--%>
             <th>用户姓名</th>
             <th>内容</th>
             <th>创建时间</th>
-            <th>对应帖子的编号</th>
+<%--            <th>对应帖子的编号</th>--%>
 <%--            <th>操作</th>--%>
         </tr>
         <c:forEach items="${dataList}" var="v">
             <tr>
-                <td>${v.id}</td>
+<%--                <td>${v.id}</td>--%>
                 <td>${v.name}</td>
                 <td>${v.content}</td>
                 <td>${v.createtime}</td>
-                <td>${v.postid}</td>
+<%--                <td>${v.postid}</td>--%>
 <%--                <td>--%>
 <%--                    <a href="${ctx}/user/postDelete?id=${v.id}" class="layui-btn layui-btn-danger layui-btn-sm">--%>
 <%--                        <i class="layui-icon layui-icon-delete"></i> 删除--%>

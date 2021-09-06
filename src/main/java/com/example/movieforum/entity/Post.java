@@ -13,6 +13,7 @@ public class Post {
     @TableId(type = IdType.AUTO )   //下面这个属性是数据库表的主键 自动递增
     private int id;
     private String title;
+    private String moviename;
     private String name;
     private String content;
     private String createtime;
