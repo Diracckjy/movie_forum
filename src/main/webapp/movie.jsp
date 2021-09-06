@@ -48,7 +48,7 @@
     </div>
 </form>
 <%--    搜索框-end --%>
-<div class="title_all"><h1><font color=#07519a>${movie.data}${movie.kinds}${movie.name}BD${movie.subtitles}</font></h1></div>
+<div class="title_all"><h1><font color=#07519a>${movie.date}${movie.kinds}${movie.name}BD${movie.subtitles}</font></h1></div>
 
 <div class="co_content8">
     <ul>
@@ -73,7 +73,7 @@
                 <br/>
                 ◎片　　名　${movie.name}
                 <br/>
-                ◎年　　代　${movie.years}
+                ◎年　　代　${movie.year}
                 <br/>
                 ◎产　　地　${movie.originplace}
                 <br/>
@@ -83,13 +83,13 @@
                 <br/>
                 ◎字　　幕　${movie.subtitles}
                 <br/>
-                ◎上映日期　${movie.data}
+                ◎上映日期　${movie.date}
                 <br/>
                 ◎IMDb评分&nbsp;&nbsp;${movie.imdbscore}
                 <br/>
                 ◎豆瓣评分　${movie.dbscore}
                 <br/>
-                ◎片　　长　${movie.time}
+                ◎片　　长　${movie.length}
                 <br/>
                 ◎导　　演　${movie.director}
                 <br/>

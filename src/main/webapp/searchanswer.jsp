@@ -57,14 +57,14 @@
                 <table border='0' width='100%'>
                     <tr height='24'>
 <%--                        <td width='6%' align="center"><img src=${v.imageurl} width="18" height="17"></td>--%>
-                        <td width='55%'><b><a href="${ctx}/movie?id=${v.id}"> ${v.data} <font
+                        <td width='55%'><b><a href="${ctx}/movie?id=${v.id}"> ${v.date} <font
                                 color='red'>${v.name}</font>[${v.subtitles}]</a></b></td>
 
                     </tr>
                     <tr>
                         <td height="56" colspan='3'> 　　◎译 名 <font color='red'>${v.translatename}</font> ◎片 名
-                            <font color='red'>${v.name}</font> ◎年 代 ${v.years} ◎国 家 ${v.originplace} ◎类 别 ${v.kinds} ◎语 言
-                            ${v.language} ◎上映日期 ${v.data} ◎豆瓣评分 ${v.dbscore}  ◎导
+                            <font color='red'>${v.name}</font> ◎年 代 ${v.year} ◎国 家 ${v.originplace} ◎类 别 ${v.kinds} ◎语 言
+                            ${v.language} ◎上映日期 ${v.date} ◎豆瓣评分 ${v.dbscore}  ◎导
                             演 ${v.director} ◎主 演 ${v.player}
                         </td>
                     </tr>

@@ -44,236 +44,11 @@
 </head>
 
 <body>
-<!--/main-header-->
-<!--/banner-section-->
-<div id="demo-1" data-zs-src='["images/2.jpg", "images/1.jpg", "images/3.jpg","images/4.jpg"]' data-zs-overlay="dots">
-    <div class="demo-inner-content">
-        <!--/header-w3l-->
-        <div class="header-w3-agileits" id="home">
-            <div class="inner-header-agile">
-                <nav class="navbar navbar-default">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <h1><a href="${ctx}/index"><span>七</span>零八落 <span>影</span>视</a></h1>
-                    </div>
-                    <!-- navbar-header -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="${ctx}/index">首页</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Genre <b
-                                        class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Action</a></li>
-                                                <li><a href="genre.html">Biography</a></li>
-                                                <li><a href="genre.html">Crime</a></li>
-                                                <li><a href="genre.html">Family</a></li>
-                                                <li><a href="horror.html">Horror</a></li>
-                                                <li><a href="genre.html">Romance</a></li>
-                                                <li><a href="genre.html">Sports</a></li>
-                                                <li><a href="genre.html">War</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Adventure</a></li>
-                                                <li><a href="comedy.html">Comedy</a></li>
-                                                <li><a href="genre.html">Documentary</a></li>
-                                                <li><a href="genre.html">Fantasy</a></li>
-                                                <li><a href="genre.html">Thriller</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Animation</a></li>
-                                                <li><a href="genre.html">Costume</a></li>
-                                                <li><a href="genre.html">Drama</a></li>
-                                                <li><a href="genre.html">History</a></li>
-                                                <li><a href="genre.html">Musical</a></li>
-                                                <li><a href="genre.html">Psychological</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="series.html">tv - series</a></li>
-                            <li><a href="news.html">news</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Country <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Asia</a></li>
-                                                <li><a href="genre.html">France</a></li>
-                                                <li><a href="genre.html">Taiwan</a></li>
-                                                <li><a href="genre.html">United States</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">China</a></li>
-                                                <li><a href="genre.html">HongCong</a></li>
-                                                <li><a href="genre.html">Japan</a></li>
-                                                <li><a href="genre.html">Thailand</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="genre.html">Euro</a></li>
-                                                <li><a href="genre.html">India</a></li>
-                                                <li><a href="genre.html">Korea</a></li>
-                                                <li><a href="genre.html">United Kingdom</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="list.html">A - z list</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
 
-                    </div>
-                    <div class="clearfix"></div>
-                </nav>
-                <div class="w3ls_search">
-                    <div class="cd-main-header">
-                        <ul class="cd-header-buttons">
-                            <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-                        </ul> <!-- cd-header-buttons -->
-                    </div>
-                    <div id="cd-search" class="cd-search">
-                        <form action="${ctx}/searchanswer" method="post">
-                            <input name="key" type="search" placeholder="Search...">
-                        </form>
-                    </div>
-                </div>
+<!-- header start -->
+<jsp:include page="header.jsp"></jsp:include>
+<!-- header end -->
 
-            </div>
-
-        </div>
-        <!--//header-w3l-->
-        <!--/banner-info-->
-        <div class="baner-info">
-            <h3>最新 <span>最</span>热 <span>电</span>影</h3>
-            <h4>属于你的影视空间</h4>
-<%--            <a class="w3_play_icon1" href="#small-dialog1">--%>
-<%--                Watch Trailer--%>
-<%--            </a>--%>
-        </div>
-        <!--/banner-ingo-->
-    </div>
-</div>
-<!--/banner-section-->
-<!--//main-header-->
-<!--/banner-bottom-->
-<div class="w3_agilits_banner_bootm">
-    <div class="w3_agilits_inner_bottom">
-        <div class="col-md-6 wthree_agile_login">
-            <ul>
-                <li><i class="fa fa-phone" aria-hidden="true"></i> (+000) 009 455 4088</li>
-                <li><a href="#" class="login" data-toggle="modal" data-target="#myModal4">Login</a></li>
-                <li><a href="#" class="login reg" data-toggle="modal" data-target="#myModal5">Register</a></li>
-
-            </ul>
-        </div>
-        <div class="col-md-6 wthree_share_agile">
-
-            <div class="single-agile-shar-buttons">
-                <ul>
-                    <li>
-                        <div class="fb-like" data-href="" data-layout="button_count" data-action="like"
-                             data-size="small" data-show-faces="false" data-share="false"></div>
-
-                    </li>
-                    <li>
-                        <div class="fb-share-button" data-href="" data-layout="button_count" data-size="small"
-                             data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
-                                                          href="">Share</a></div>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!--//banner-bottom-->
-<!-- Modal1 -->
-<div class="modal fade" id="myModal4" tabindex="-1" role="dialog">
-
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Login</h4>
-                <div class="login-form">
-                    <form action="#" method="post">
-                        <input type="email" name="email" placeholder="E-mail" required="">
-                        <input type="password" name="password" placeholder="Password" required="">
-                        <div class="tp">
-                            <input type="submit" value="LOGIN NOW">
-                        </div>
-                        <div class="forgot-grid">
-                            <div class="log-check">
-                                <label class="checkbox"><input type="checkbox" name="checkbox">Remember me</label>
-                            </div>
-                            <div class="forgot">
-                                <a href="#" data-toggle="modal" data-target="#myModal2">Forgot Password?</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //Modal1 -->
-<!-- Modal1 -->
-<div class="modal fade" id="myModal5" tabindex="-1" role="dialog">
-
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Register</h4>
-                <div class="login-form">
-                    <form action="#" method="post">
-                        <input type="text" name="name" placeholder="Name" required="">
-                        <input type="email" name="email" placeholder="E-mail" required="">
-                        <input type="password" name="password" placeholder="Password" required="">
-                        <input type="password" name="conform password" placeholder="Confirm Password" required="">
-                        <div class="signin-rit">
-													<span class="agree-checkbox">
-														<label class="checkbox"><input type="checkbox" name="checkbox">I agree to your <a
-                                                                class="w3layouts-t" href="#" target="_blank">Terms of Use</a> and <a
-                                                                class="w3layouts-t" href="#" target="_blank">Privacy Policy</a></label>
-													</span>
-                        </div>
-                        <div class="tp">
-                            <input type="submit" value="REGISTER NOW">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //Modal1 -->
 <!--/content-inner-section-->
 <div class="w3_content_agilleinfo_inner">
     <div class="agile_featured_movies">
@@ -1315,7 +1090,7 @@
                                     <h6><a href="${ctx}/movie?id=${movie.id}">${movie.translatename} </a></h6>
                                 </div>
                                 <div class="mid-2 agile_mid_2_home">
-                                    <p>${movie.years}</p>
+                                    <p>${movie.year}</p>
                                     <div class="block-stars">
                                         <ul class="w3l-ratings">
                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -1344,7 +1119,8 @@
             <c:forEach items = "${movies2}" var="movie">
                 <div class="col-md-2 w3l-movie-gride-agile requested-movies">
                     <a href="${ctx}/movie?id=${movie.id}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
-                                                                           class="img-responsive" alt=" ">
+                                                                           class="img-responsive" alt=" "
+                                                                                           style=" width: 100%; height: 21vw;">
                         <div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
                     </a>
                     <div class="mid-1 agileits_w3layouts_mid_1_home">
@@ -1352,7 +1128,7 @@
                             <h6><a href="${ctx}/movie?id=${movie.id}">${movie.translatename}</a></h6>
                         </div>
                         <div class="mid-2 agile_mid_2_home">
-                            <p>${movie.years}</p>
+                            <p>${movie.year}</p>
                             <div class="block-stars">
                                 <ul class="w3l-ratings">
                                     <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -1381,165 +1157,10 @@
 </div>
 <!--//content-inner-section-->
 
+<!-- footer start -->
 <!--/footer-bottom-->
-<div class="contact-w3ls" id="contact">
-    <div class="footer-w3lagile-inner">
-        <h2>Sign up for our <span>Newsletter</span></h2>
-        <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus
-            tristique bibendum. Donec rutrum sed sem quis venenatis.</p>
-        <div class="footer-contact">
-            <form action="#" method="post">
-                <input type="email" name="Email" placeholder="Enter your email...." required=" ">
-                <input type="submit" value="Subscribe">
-            </form>
-        </div>
-        <div class="footer-grids w3-agileits">
-            <div class="col-md-2 footer-grid">
-                <h4>Release</h4>
-                <ul>
-                    <li><a href="#" title="Release 2016">2016</a></li>
-                    <li><a href="#" title="Release 2015">2015</a></li>
-                    <li><a href="#" title="Release 2014">2014</a></li>
-                    <li><a href="#" title="Release 2013">2013</a></li>
-                    <li><a href="#" title="Release 2012">2012</a></li>
-                    <li><a href="#" title="Release 2011">2011</a></li>
-                </ul>
-            </div>
-            <div class="col-md-2 footer-grid">
-                <h4>Movies</h4>
-                <ul>
-
-                    <li><a href="genre.html">ADVENTURE</a></li>
-                    <li><a href="comedy.html">COMEDY</a></li>
-                    <li><a href="series.html">FANTASY</a></li>
-                    <li><a href="series.html">ACTION </a></li>
-                    <li><a href="genre.html">MOVIES </a></li>
-                    <li><a href="horror.html">HORROR </a></li>
-
-                </ul>
-            </div>
-
-
-            <div class="col-md-2 footer-grid">
-                <h4>Review Movies</h4>
-                <ul class="w3-tag2">
-                    <li><a href="comedy.html">Comedy</a></li>
-                    <li><a href="horror.html">Horror</a></li>
-                    <li><a href="series.html">Historical</a></li>
-                    <li><a href="series.html">Romantic</a></li>
-                    <li><a href="series.html">Love</a></li>
-                    <li><a href="genre.html">Action</a></li>
-                    <li><a href="single.html">Reviews</a></li>
-                    <li><a href="comedy.html">Comedy</a></li>
-                    <li><a href="horror.html">Horror</a></li>
-                    <li><a href="series.html">Historical</a></li>
-                    <li><a href="series.html">Romantic</a></li>
-                    <li><a href="genre.html">Love</a></li>
-                    <li><a href="comedy.html">Comedy</a></li>
-                    <li><a href="horror.html">Horror</a></li>
-                    <li><a href="genre.html">Historical</a></li>
-
-                </ul>
-
-
-            </div>
-            <div class="col-md-2 footer-grid">
-                <h4>Latest Movies</h4>
-                <div class="footer-grid1">
-                    <div class="footer-grid1-left">
-                        <a href="single.html"><img src="images/1.jpg" alt=" " class="img-responsive"></a>
-                    </div>
-                    <div class="footer-grid1-right">
-                        <a href="single.html">eveniet ut molesti</a>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="footer-grid1">
-                    <div class="footer-grid1-left">
-                        <a href="single.html"><img src="images/2.jpg" alt=" " class="img-responsive"></a>
-                    </div>
-                    <div class="footer-grid1-right">
-                        <a href="single.html">earum rerum tenet</a>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="footer-grid1">
-
-                    <div class="footer-grid1-left">
-                        <a href="single.html"><img src="images/4.jpg" alt=" " class="img-responsive"></a>
-                    </div>
-                    <div class="footer-grid1-right">
-                        <a href="single.html">eveniet ut molesti</a>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="footer-grid1">
-                    <div class="footer-grid1-left">
-                        <a href="single.html"><img src="images/3.jpg" alt=" " class="img-responsive"></a>
-                    </div>
-                    <div class="footer-grid1-right">
-                        <a href="single.html">earum rerum tenet</a>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-
-            </div>
-            <div class="col-md-2 footer-grid">
-                <h4 class="b-log"><a href="index.html"><span>M</span>ovies <span>P</span>ro</a></h4>
-                <div class="footer-grid-instagram">
-                    <a href="single.html"><img src="images/m1.jpg" alt=" " class="img-responsive"></a>
-                </div>
-                <div class="footer-grid-instagram">
-                    <a href="single.html"><img src="images/m2.jpg" alt=" " class="img-responsive"></a>
-                </div>
-                <div class="footer-grid-instagram">
-                    <a href="single.html"><img src="images/m3.jpg" alt=" " class="img-responsive"></a>
-                </div>
-                <div class="footer-grid-instagram">
-                    <a href="single.html"><img src="images/m4.jpg" alt=" " class="img-responsive"></a>
-                </div>
-                <div class="footer-grid-instagram">
-                    <a href="single.html"><img src="images/m5.jpg" alt=" " class="img-responsive"></a>
-                </div>
-                <div class="footer-grid-instagram">
-                    <a href="single.html"><img src="images/m6.jpg" alt=" " class="img-responsive"></a>
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-            <div class="clearfix"></div>
-            <ul class="bottom-links-agile">
-                <li><a href="icons.html" title="Font Icons">Icons</a></li>
-                <li><a href="short-codes.html" title="Short Codes">Short Codes</a></li>
-                <li><a href="contact.html" title="contact">Contact</a></li>
-
-            </ul>
-        </div>
-        <h3 class="text-center follow">Connect <span>Us</span></h3>
-        <ul class="social-icons1 agileinfo">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-        </ul>
-
-    </div>
-
-</div>
-<div class="w3agile_footer_copy">
-    <p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/"
-                                                                                target="_blank" title="模板之家">模板之家</a> -
-        Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-</div>
-<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover"
-                                                                         style="opacity: 1;"> </span></a>
-
+<jsp:include page="footer.jsp"></jsp:include>
+<!-- footer end -->
 <script src="js/jquery-1.11.1.min.js"></script>
 <!-- Dropdown-Menu-JavaScript -->
 <script>
@@ -1692,9 +1313,5 @@
         overflow: hidden;
     }
 </style>
-<div class="copyrights" id="links20210126">
-    Collect from <a href="http://www.cssmoban.com/" title="网站模板">模板之家</a>
-    <a href="http://cooco.net.cn/" title="组卷网">组卷网</a>
-</div>
 </body>
 </html>

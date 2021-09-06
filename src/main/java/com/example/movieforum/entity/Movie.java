@@ -15,15 +15,15 @@ public class Movie {
     private String imageurl;    //海报路径
     private String translatename;    //译名
     private String name;    //片名
-    private String years;    //年代
+    private String year;    //年代
     private String originplace;    //产地
     private String kinds;    //类别
     private String language;    //语言
     private String subtitles;    //字幕
-    private String data;    //上映日期
+    private String date;    //上映日期
     private String imdbscore;    //IMDb评分
     private String dbscore;    //豆瓣评分
-    private String time;    //片长
+    private String length;    //片长
     private String director;    //导演
     private String scriptwriter;    //编剧
     private String player;    //主演
