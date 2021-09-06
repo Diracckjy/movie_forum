@@ -24,8 +24,9 @@
         <tbody>
         <tr class="layui-bg-blue">
             <th>编号</th>
-            <th>主题</th>
+            <th>标题</th>
             <th>片名</th>
+            <th>作者名</th>
             <th>内容</th>
             <th>创建时间</th>
             <th>操作</th>
@@ -34,6 +35,7 @@
             <tr>
                 <td>${v.id}</td>
                 <td>${v.title}</td>
+                <td>${v.moviename}</td>
                 <td>${v.name}</td>
                 <td>${v.content}</td>
                 <td>${v.createtime}</td>
