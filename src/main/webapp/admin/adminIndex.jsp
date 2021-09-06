@@ -74,6 +74,14 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">用户信息管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a target="adminIndex" href="${ctx}/userList?p=1">用户信息列表</a></dd>
+                        <dd><a target="adminIndex" href="${ctx}/userAdd">新用户添加</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item layui-nav-itemed">
                     <a href="javascript:;">电影管理</a>
                     <dl class="layui-nav-child">
                         <dd><a target="adminIndex" href="${ctx}/admin/movieList?p=1">电影列表</a></dd>
