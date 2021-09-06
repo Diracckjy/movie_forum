@@ -49,7 +49,7 @@ public class IndexController {
         ArrayList<Movie> movies2 = getMoviesRandom(10);
         model.addAttribute("movies2", movies2);
 
-        return "index"; //打开网页没用跳转到学生列表路径 studentList
+        return "index"; //
     }
 
     // 处理电影片名和译名

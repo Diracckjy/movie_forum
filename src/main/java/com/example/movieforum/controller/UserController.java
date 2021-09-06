@@ -23,10 +23,10 @@ public class UserController {
 
 
     //进入后台首页
-    @RequestMapping("/index")
-    public String main(Model model){
-        return "index";
-    }
+//    @RequestMapping("/index")
+//    public String main(Model model){
+//        return "index";
+//    }
 
     //跳转到登陆页面
     @RequestMapping("/login")
