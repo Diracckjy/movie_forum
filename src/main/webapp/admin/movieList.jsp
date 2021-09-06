@@ -66,7 +66,7 @@
                 <td>${movie.name}</td>
                 <td>${movie.translatename}</td>
                 <td>
-                    <a href="" class="layui-btn layui-btn-danger layui-btn-sm">
+                    <a href="${ctx}/admin/movieDelete?id=${movie.id}" class="layui-btn layui-btn-danger layui-btn-sm">
                         <i class="layui-icon layui-icon-delete"></i> 删除
                     </a>
                     <a href="${ctx}/admin/movieEdit?id=${movie.id}" class="layui-btn layui-btn-info layui-btn-sm">

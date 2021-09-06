@@ -143,7 +143,7 @@
         <!--中间内容显示区域 end-->
 
         <!--版权区域 start-->
-        <jsp:include page="index.jsp"></jsp:include>
+        <jsp:include page="footer.jsp"></jsp:include>
         <!--版权区域 end-->
 
 </body>
