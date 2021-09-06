@@ -36,7 +36,7 @@
 <%--        <h3>所属分类：热门游戏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片名： ${obj.name}--%>
             <h3>片名： ${obj.moviename}
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 作者：${obj.name}
@@ -73,7 +73,7 @@
 
 <div class="layui-container">
     <div>
-        <h1 style="margin: 20px; text-align: center;">以下为用户对帖子的评论</h1>
+        <h1 style="margin: 20px; text-align: center;">------------------------------------以下为用户对帖子的评论------------------------------------</h1>
     </div>
 
 <div class="layui-fluid">
