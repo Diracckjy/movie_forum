@@ -110,4 +110,17 @@ public class UserController {
         return "redirect:userList";
     }
 
+    // 根据号码和密码查询用户
+    private User selectUserByPhoneAndPass(String phone, String password){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("phone", phone);
+        queryWrapper.eq("password", password);
+        return userMapper.selectOne(queryWrapper);
+    }
+
+    // 判断查出的用户是否存在
+    private boolean hasUser(User user){
+        return user != null;
+    }
+
 }
