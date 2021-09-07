@@ -6,6 +6,7 @@ import com.example.movieforum.entity.MovieComments;
 import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.MovieCommentsMapper;
 import com.example.movieforum.mapper.MovieMapper;
+import com.example.movieforum.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller  //加这个注解代表他是一个请求处理类
 @CrossOrigin  //允许跨域请求   允许别人调用这个接口
@@ -26,6 +28,9 @@ public class MovieController {
 
     @Autowired
     MovieCommentsMapper movieCommentsMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     // 电影详情
     @RequestMapping("/movie")
@@ -48,21 +53,25 @@ public class MovieController {
     }
 
     //添加电影评论数据到数据库
-    @RequestMapping("/moviecommentsadd")     //从主页传过来的user
-    public String moviecommentsadd(Model model, Integer movieid, User user, String context) {
+    @RequestMapping("/moviecommentsadd")     //从主页传过来的userid
+    public String moviecommentsadd(Model model, Integer movieid, Integer userid, String context) {
         LocalDate date = LocalDate.now(); // get the current date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
 
         // 根据参数构造movieComment对象
         MovieComments movieComments = new MovieComments();
         movieComments.setMovieid(movieid);
-        movieComments.setUserid(user.getId());
+        movieComments.setUserid(userid);
+        User user = userMapper.selectById(userid);
         movieComments.setUsername(user.getName());
         movieComments.setContext(context);
         movieComments.setTime(date.format(formatter));
 
         // 插入数据库
-        movieCommentsMapper.insert(movieComments);
+        if (userid != 0) {   //确保用户登录之后才可以发表评论
+            movieCommentsMapper.insert(movieComments);
+        }
         return "redirect:movie?id="+movieid;
     }
 

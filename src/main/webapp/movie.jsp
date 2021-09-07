@@ -142,7 +142,7 @@
 
             <div class="layui-container" style="margin-top: 50px;">
                 <form class="layui-form  layui-form-pane" method="post"
-                      action="${ctx}/moviecommentsadd?movieid=50&userid=1&username=zhang">
+                      action="${ctx}/moviecommentsadd?movieid=50&userid=70">
                     <div class="layui-form-item">
                         <label class="layui-form-label">留言内容</label>
                         <div class="layui-input-block">
