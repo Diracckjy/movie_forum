@@ -152,7 +152,7 @@ class MovieForumApplicationTests {
 
     @Test
     void 查询用户(){
-        String phone = "15252523636";
+        String phone = "152";
         String password = "123456";
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
