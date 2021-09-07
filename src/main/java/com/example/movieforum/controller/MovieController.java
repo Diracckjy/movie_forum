@@ -3,9 +3,11 @@ package com.example.movieforum.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.movieforum.entity.Movie;
 import com.example.movieforum.entity.MovieComments;
+import com.example.movieforum.entity.Preference;
 import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.MovieCommentsMapper;
 import com.example.movieforum.mapper.MovieMapper;
+import com.example.movieforum.mapper.PreferenceMapper;
 import com.example.movieforum.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -30,25 +31,26 @@ public class MovieController {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    PreferenceMapper preferenceMapper;
+
     // 电影详情
     @RequestMapping("/movie")
     public String movie(Model model, Integer movieId, Integer userId) {
-//        QueryWrapper<Movie> qw=new QueryWrapper<Movie>();
-//        qw.orderByDesc("id"); //根据id降序排列
-//        List<Movie> movieList = movieMapper.selectList(qw);
-//        Integer id1=2;    //测试ID
-//        id=id1;           //测试ID
         Movie movie = movieMapper.selectById(movieId);
         model.addAttribute("movie", movie);
         model.addAttribute("userId", userId);
         // 随机获取8部电影
         ArrayList<Movie> movies = getMoviesRandom(8);
         model.addAttribute("movies", movies);
-        QueryWrapper<MovieComments> qw=new QueryWrapper<MovieComments>();
+        QueryWrapper<MovieComments> qw = new QueryWrapper<MovieComments>();
         qw.eq("movieid",movieId);
         qw.orderByDesc("id"); //根据id降序排列
         List<MovieComments> movieCommentsList = movieCommentsMapper.selectList(qw);
         model.addAttribute("movieCommentsList", movieCommentsList);
+
+        if(userId != 0) updatePreference(userId, movieId, 0.5);
+
         return "movie";
     }
 
@@ -110,8 +112,35 @@ public class MovieController {
         if (userId != 0) {   //确保用户登录之后才可以发表评论
             movieCommentsMapper.insert(movieComments);
         }
+        if(userId != 0) updatePreference(userId, movieId, 1.0);
+
         return "redirect:movie?movieId="+movieId
                 +"&userId="+userId;
     }
+
+    // 更新偏好表，浏览增加0.5的权重，评论增加1.0的权重
+    private void updatePreference(int userid, int movieid, Double weight){
+        QueryWrapper<Preference> qw = new QueryWrapper<>();
+
+        // 先检查记录是否存在
+        qw.eq("userid", userid);
+        qw.eq("movieid", movieid);
+        Preference preference = preferenceMapper.selectOne(qw);
+
+        if (preference != null) { // 更新
+            Double pref = preference.getPreference() + weight;
+            preference.setPreference(pref);
+            preferenceMapper.updateById(preference);
+        } else {      // 增加
+            preference = new Preference();
+            preference.setUserid(userid);
+            preference.setMovieid(movieid);
+            preference.setPreference(weight);
+
+            preferenceMapper.insert(preference);
+        }
+    }
+
+
 
 }
