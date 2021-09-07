@@ -35,7 +35,7 @@
                 <i class="layui-icon layui-icon-spread-left"></i>
             </li>
 
-            <li class="layui-nav-item layui-hide-xs"><a href="${ctx}/studentIndex" target="_blank">系統首页</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="${ctx}/index" target="_blank">系統首页</a></li>
         </ul>
     </div>
     <!-- 头部区域（可配合layui 已有的水平导航） end -->

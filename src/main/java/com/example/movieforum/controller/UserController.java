@@ -41,16 +41,23 @@ public class UserController {
         if(!code.equalsIgnoreCase(vcode)){//如果验证码不相等
             model.addAttribute("msg","验证码不正确");
             return "login"; }
-        //验证码正确 验证账号
-        String sql="select * from user_info where phone='"+phone+"' and password='"+password+"' ";
-        List<Map> mapList = userMapper.commonSelect(sql);
-        if(mapList.size()>0){ //账号验证通过
-            session.setAttribute("phone",phone);
-            return "index";
+        User user = selectUserByPhoneAndPass(phone, password);
+        if(hasUser(user)) {
+            return "redirect:index?user="+user;
         }else{
-            model.addAttribute("msg","账号或者密码错误");
-            return "login";
+           model.addAttribute("msg","账号或者密码错误");
+           return "login";
         }
+        //验证码正确 验证账号
+//        String sql="select * from user_info where phone='"+phone+"' and password='"+password+"' ";
+//        List<Map> mapList = userMapper.commonSelect(sql);
+//        if(mapList.size()>0){ //账号验证通过
+//            session.setAttribute("phone",phone);
+//            return "index";
+//        }else{
+//            model.addAttribute("msg","账号或者密码错误");
+//            return "login";
+//        }
     }
 
     //退出登陆页面
@@ -122,5 +129,7 @@ public class UserController {
     private boolean hasUser(User user){
         return user != null;
     }
+
+
 
 }
