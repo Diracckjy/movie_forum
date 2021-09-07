@@ -69,10 +69,10 @@ public class UserController {
     }
 
     //退出登陆页面
-    @RequestMapping("/loginOut")
+    @RequestMapping("/logout")
     public String loginOut(Model model,HttpSession session){
-        session.removeAttribute("id");  //清空session内容
-        return "login";
+//        session.removeAttribute("id");  //清空session内容
+        return "redirect:index?userId=0";
     }
 
     //查询信息列表
@@ -150,6 +150,12 @@ public class UserController {
         model.addAttribute("id",id);
         return "userIndex";
     }
+
+    @RequestMapping("/register")
+    public String register(Model model){
+        return "register";
+    }
+
 
     //查询用户与帖子对应列表
    // UserMapper userMapper;

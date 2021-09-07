@@ -97,7 +97,7 @@
                    autocomplete="off">
         </div>
         <div class="layui-form-item" style="margin-top: 30px">
-            <input class="layui-input" name="password" placeholder="欢迎来到七零八落论坛" value="" lay-verify="required"
+            <input class="layui-input" name="password" placeholder="输入密码" value="" lay-verify="required"
                    type="password" autocomplete="off">
         </div>
 
@@ -108,9 +108,9 @@
             <div class="code"><img id="captcha" src="${ctx}/codeCreate" width="100" height="36"
                                    onclick="refreshCode(this)"></div>
         </div>
-        <button class="layui-btn login_btn" lay-submit="" lay-filter="login" id="btn">登录</button>
+        <button class="layui-btn login_btn" lay-submit="" lay-filter="${ctx}/login" id="btn">登录</button>
     </form>
-    <button class="layui-btn login_btn"><a href="register.jsp">注册</a></button>
+    <button class="layui-btn login_btn"><a href="${ctx}/register">注册</a></button>
 </div>
 
 <script type="text/javascript">
