@@ -45,7 +45,10 @@ public class IndexController {
     public String index(Model model, User user){
 
         boolean hasuser = false;
-        if(user.getId() != 0){
+//        if(user.getId() != 0){
+//            hasuser = true;
+//        }
+        if(user != null){
             hasuser = true;
         }
         model.addAttribute("user", user);

@@ -41,16 +41,23 @@ public class UserController {
         if(!code.equalsIgnoreCase(vcode)){//如果验证码不相等
             model.addAttribute("msg","验证码不正确");
             return "login"; }
-        //验证码正确 验证账号
-        String sql="select * from user_info where phone='"+phone+"' and password='"+password+"' ";
-        List<Map> mapList = userMapper.commonSelect(sql);
-        if(mapList.size()>0){ //账号验证通过
-            session.setAttribute("phone",phone);
-            return "index";
+        User user = selectUserByPhoneAndPass(phone, password);
+        if(hasUser(user)) {
+            return "redirect:index?user="+user;
         }else{
-            model.addAttribute("msg","账号或者密码错误");
-            return "login";
+           model.addAttribute("msg","账号或者密码错误");
+           return "login";
         }
+        //验证码正确 验证账号
+//        String sql="select * from user_info where phone='"+phone+"' and password='"+password+"' ";
+//        List<Map> mapList = userMapper.commonSelect(sql);
+//        if(mapList.size()>0){ //账号验证通过
+//            session.setAttribute("phone",phone);
+//            return "index";
+//        }else{
+//            model.addAttribute("msg","账号或者密码错误");
+//            return "login";
+//        }
     }
 
     //退出登陆页面
@@ -109,5 +116,20 @@ public class UserController {
         userMapper.updateById(obj);
         return "redirect:userList";
     }
+
+    // 根据号码和密码查询用户
+    private User selectUserByPhoneAndPass(String phone, String password){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("phone", phone);
+        queryWrapper.eq("password", password);
+        return userMapper.selectOne(queryWrapper);
+    }
+
+    // 判断查出的用户是否存在
+    private boolean hasUser(User user){
+        return user != null;
+    }
+
+
 
 }
