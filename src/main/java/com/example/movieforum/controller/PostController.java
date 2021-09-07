@@ -106,6 +106,7 @@ public class PostController {
         if (userId != 0) {
             postcommentsMapper.insert(postComments);
         }
+
       //  postcommentsMapper.insert(obj);
         return "redirect:postDetail?postId="+postId
                 +"&userId="+userId;
