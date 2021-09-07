@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.movieforum.entity.Movie;
 import com.example.movieforum.entity.MovieComments;
+import com.example.movieforum.entity.Post;
 import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.MovieCommentsMapper;
 import com.example.movieforum.mapper.MovieMapper;
+import com.example.movieforum.mapper.PostMapper;
 import com.example.movieforum.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ class MovieForumApplicationTests {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    PostMapper postMapper;
 
     @Test
     void contextLoads() {
@@ -162,6 +167,14 @@ class MovieForumApplicationTests {
 
         System.out.println("user = " + user);
 
+    }
+    @Test
+    void 筛选帖子(){
+        int userid=3;
+        QueryWrapper<Post> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userid",userid );
+        List<Post> posts = postMapper.selectList(queryWrapper);
+        System.out.println("posts = " + posts);
     }
 
 }
