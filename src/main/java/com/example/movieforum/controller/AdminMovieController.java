@@ -1,6 +1,5 @@
 package com.example.movieforum.controller;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -39,10 +38,6 @@ public class AdminMovieController {
     // 管理员查询电影信息列表
     @RequestMapping("/movieList")
     public String movieList(Model model, Integer p){
-//        QueryWrapper<Movie> qw=new QueryWrapper<Movie>();
-//        qw.orderByDesc("id"); //根据id降序排列
-//        List<Movie> movieList = movieMapper.selectList(qw);
-//        model.addAttribute("movieList",movieList);
         // 第p页 每页显示5条
         IPage<Movie> page = new Page<Movie>(p, 12);
         QueryWrapper<Movie> qw = new QueryWrapper<Movie>();
@@ -84,32 +79,27 @@ public class AdminMovieController {
     //管理员 添加电影
     @RequestMapping("/movieAdd")
     public String movieAdd(Model model) throws IllegalAccessException {
-//        Map<String, String> tags = new HashMap<>();
-//        for (int i = 0; i < movie_key.length; i++) {
-//            tags.put(movie_key[i], movie_tag[i]);
-//        }
-//        model.addAttribute("tags", tags);
         model.addAttribute("length", movie_key.length);
         model.addAttribute("movie_key", movie_key);
         model.addAttribute("movie_tag", movie_tag);
         return "admin/movieAdd";
     }
 
-    // 管理员插入电影
+    // 管理员 插入电影
     @RequestMapping("/movieInsert")
     public String movieInsert(Model model, Movie movie) throws IllegalAccessException {
         movieMapper.insert(movie);
         return "redirect:movieAdd";
     }
 
-    // 管理员修改电影
+    // 管理员 修改电影
     @RequestMapping("/movieUpdate")
     public String movieUpdate(Model model, Movie movie){
         movieMapper.updateById(movie);
         return "redirect:movieList?p=1";
     }
 
-    // 管理员删除电影
+    // 管理员 删除电影
     @RequestMapping("/movieDelete")
     public String movieDelete(Model model, Integer id) throws IllegalAccessException {
         movieMapper.deleteById(id);
