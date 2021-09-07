@@ -15,10 +15,65 @@ public class PostComments {
     private String name;
     private String content;
     private String createtime;
-//    private int  postid;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public int getPostid() {
+        return postid;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    //    private int  postid;
     public int  postid;
     private int userid;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
+
+    public void setPostid(int postid) {
+        this.postid = postid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+
+
+
+    public void setTranslatename(String translatename) {
+
+    }
     //生成getset toString
 
 

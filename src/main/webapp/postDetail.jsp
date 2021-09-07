@@ -120,13 +120,13 @@
 
 
     <div class="layui-container" style="margin-top: 50px;">
-        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert">
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户姓名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
-                </div>
-            </div>
+        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert?userid=1&username=zhang">
+<%--            <div class="layui-form-item">--%>
+<%--                <label class="layui-form-label">用户姓名</label>--%>
+<%--                <div class="layui-input-block">--%>
+<%--                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入用户姓名" autocomplete="off" class="layui-input">--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">内容</label>
@@ -135,12 +135,12 @@
                 </div>
             </div>
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">创建时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="createtime" required  lay-verify="date" placeholder="请输入创建时间" autocomplete="off" class="layui-input">
-                </div>
-            </div>
+<%--            <div class="layui-form-item">--%>
+<%--                <label class="layui-form-label">创建时间</label>--%>
+<%--                <div class="layui-input-block">--%>
+<%--                    <input type="text" name="createtime" required  lay-verify="date" placeholder="请输入创建时间" autocomplete="off" class="layui-input">--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">该帖子编号</label>

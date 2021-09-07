@@ -34,7 +34,7 @@
                                     <li>${user.name}</li>
                                 </c:when>
                                 <c:otherwise>  <!--否则 -->
-                                    <li><a href="/login">请登录</a></li>
+                                    <li><a href="${ctx}/login">请登录</a></li>
                                 </c:otherwise>
                             </c:choose>
                         </ul>

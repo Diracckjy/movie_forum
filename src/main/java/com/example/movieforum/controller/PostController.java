@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.movieforum.entity.Post;
 //import com.example.movieforum.mapper.CommentsMapper;
 import com.example.movieforum.entity.PostComments;
+import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.PostCommentsMapper;
 import com.example.movieforum.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller  //加这个注解代表他是一个请求处理类
@@ -82,8 +85,21 @@ public class PostController {
 
     //添加信息保存到数据库 insert
     @RequestMapping("/postCommentsInsert")
-    public String postCommentsInsert(Model model, PostComments obj, Integer id){
-        postcommentsMapper.insert(obj);
+    public String postCommentsInsert( Model model, User user, String content, PostComments obj){
+        LocalDate date = LocalDate.now(); // get the current date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // 根据参数构造movieComment对象
+        PostComments postComments = new  PostComments();
+        postComments.setPostid(obj.postid);
+        postComments.setUserid(user.getId());
+        postComments.setName(user.getName());
+        postComments.setContent(content);
+        postComments.setCreatetime(date.format(formatter));
+
+        // 插入数据库
+        postcommentsMapper.insert(postComments);
+      //  postcommentsMapper.insert(obj);
         return "redirect:postDetail?id="+obj.postid;
     }
 //    @RequestMapping("/postCommentsInsert")
@@ -125,6 +141,18 @@ public class PostController {
 //        // qw.inSql("id","select id from table where id  id");
 //        qw.eq("postid",id);
 //    }
+
+    //添加电影评论数据到数据库
+
+
+
+//    @RequestMapping("/postcommentsadd")     //从主页传过来的user
+//    public String postcommentsadd(Model model, Integer postid, User user, String content) {
+//
+//        return "redirect:movie?id="+postid;
+//    }
+
+
 
 
 }
