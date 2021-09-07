@@ -120,7 +120,7 @@
 
 
     <div class="layui-container" style="margin-top: 50px;">
-        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert?userid=1&username=zhang">
+        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert?userid=70">
 <%--            <div class="layui-form-item">--%>
 <%--                <label class="layui-form-label">用户姓名</label>--%>
 <%--                <div class="layui-input-block">--%>

@@ -8,6 +8,7 @@ import com.example.movieforum.entity.PostComments;
 import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.PostCommentsMapper;
 import com.example.movieforum.mapper.PostMapper;
+import com.example.movieforum.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,8 @@ public class PostController {
     PostMapper postMapper;
     @Autowired
     PostCommentsMapper postcommentsMapper;
+    @Autowired
+    UserMapper UserMapper;
 
 
 
@@ -85,20 +88,23 @@ public class PostController {
 
     //添加信息保存到数据库 insert
     @RequestMapping("/postCommentsInsert")
-    public String postCommentsInsert( Model model, User user, String content, PostComments obj){
+    public String postCommentsInsert( Model model, Integer userid,String content, PostComments obj){
         LocalDate date = LocalDate.now(); // get the current date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // 根据参数构造movieComment对象
         PostComments postComments = new  PostComments();
         postComments.setPostid(obj.postid);
-        postComments.setUserid(user.getId());
+        postComments.setUserid(userid);
+        User user = UserMapper.selectById(userid);
         postComments.setName(user.getName());
         postComments.setContent(content);
         postComments.setCreatetime(date.format(formatter));
 
         // 插入数据库
-        postcommentsMapper.insert(postComments);
+        if (userid != 0) {
+            postcommentsMapper.insert(postComments);
+        }
       //  postcommentsMapper.insert(obj);
         return "redirect:postDetail?id="+obj.postid;
     }
