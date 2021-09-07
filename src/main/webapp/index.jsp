@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: ASUS
+  user: ASUS
   Date: 8/31/2021
   Time: 3:23 PM
   To change this template use File | Settings | File Templates.
@@ -58,15 +58,16 @@
         <div class="w3_agile_latest_movies">
             <div id="owl-demo" class="owl-carousel owl-theme">
                 <c:forEach items = "${movies}" var="movie">
+                    <!-- one movie start -->
                     <div class="item">
                         <div class="w3l-movie-gride-agile w3l-movie-gride-slider ">
-                            <a href="${ctx}/movie?id=${movie.id}&user=${user}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
+                            <a href="${ctx}/movie?movieId=${movie.id}&userId=${userId}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
                                                                                    class="img-responsive" alt=" "/>
                                 <div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
                             </a>
                             <div class="mid-1 agileits_w3layouts_mid_1_home">
                                 <div class="w3l-movie-text">
-                                    <h6><a href="${ctx}/movie?id=${movie.id}&user=${user}">${movie.translatename} </a></h6>
+                                    <h6><a href="${ctx}/movie?movieId=${movie.id}&userId=${userId}">${movie.translatename} </a></h6>
                                 </div>
                                 <div class="mid-2 agile_mid_2_home">
                                     <p>${movie.year}</p>
@@ -87,6 +88,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- one movie end -->
                 </c:forEach>
             </div>
         </div>
@@ -96,15 +98,16 @@
         <!--/requested-movies start -->
         <div class="wthree_agile-requested-movies">
             <c:forEach items = "${movies2}" var="movie">
+                <!-- one movie start -->
                 <div class="col-md-2 w3l-movie-gride-agile requested-movies">
-                    <a href="${ctx}/movie?id=${movie.id}&user=${user}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
+                    <a href="${ctx}/movie?movieid=${movie.id}&userid=${userId}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
                                                                            class="img-responsive" alt=" "
                                                                                            style=" width: 100%; height: 21vw;">
                         <div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
                     </a>
                     <div class="mid-1 agileits_w3layouts_mid_1_home">
                         <div class="w3l-movie-text">
-                            <h6><a href="${ctx}/movie?id=${movie.id}&user=${user}">${movie.translatename}</a></h6>
+                            <h6><a href="${ctx}/movie?movieId=${movie.id}&userId=${userId}">${movie.translatename}</a></h6>
                         </div>
                         <div class="mid-2 agile_mid_2_home">
                             <p>${movie.year}</p>
@@ -124,6 +127,7 @@
                         <p>NEW</p>
                     </div>
                 </div>
+                <!-- one movie end -->
             </c:forEach>
             <div class="clearfix"></div>
         </div>
@@ -135,8 +139,8 @@
             <c:forEach items = "${posts}" var="post">
                 <ul class="side-bar-agile">
                     <li>
-                        <a href="${ctx}/postDetail?id=${post.id}&user=${user}">
-                            <h4>${post.title}</h4> <h5>《${post.moviename}》</h5>
+                        <a href="${ctx}/postDetail?id=${post.id}&userId=${userId}">
+                            <h3>${post.title}</h3> <h4>评价电影：《${post.moviename}》</h4>
                         </a>
                         <p>${post.createtime}</p>
                     </li>
