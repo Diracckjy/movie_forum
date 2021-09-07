@@ -152,7 +152,7 @@ class MovieForumApplicationTests {
 
     @Test
     void 查询用户(){
-        String phone = "152";
+        String phone = "15252523636";
         String password = "123456";
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -160,7 +160,7 @@ class MovieForumApplicationTests {
         queryWrapper.eq("password", password);
         User user = userMapper.selectOne(queryWrapper);
 
-        System.out.println("user = " + user);
+        System.out.println("user = " + user.getId());
 
     }
 
