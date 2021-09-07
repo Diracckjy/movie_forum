@@ -82,6 +82,7 @@
 <%--                <li><a href="${ctx}/login" class="login reg" data-toggle="modal" data-target="#myModal5">注册</a></li>--%>
                 <li><a href="${ctx}/login" class="login" >登录</a></li>
                 <li><a href="${ctx}/login" class="login reg" >注册</a></li>
+                <li><a href="${ctx}/logout" class="login reg" >退出登录</a></li>
 
             </ul>
         </div>
