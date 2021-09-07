@@ -14,6 +14,9 @@ import com.example.movieforum.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import com.example.movieforum.entity.Preference;
+import com.example.movieforum.mapper.PreferenceMapper;
+
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
@@ -34,6 +37,9 @@ class MovieForumApplicationTests {
 
     @Autowired
     PostMapper postMapper;
+
+    @Autowired
+    PreferenceMapper preferenceMapper;
 
     @Test
     void contextLoads() {
@@ -177,4 +183,29 @@ class MovieForumApplicationTests {
         System.out.println("posts = " + posts);
     }
 
+    @Test
+    void 更新偏好() {
+        Integer userid = 1;
+        Integer movieid = 1;
+        Double weight = 0.5;
+        QueryWrapper<Preference> qw = new QueryWrapper<>();
+
+        // 先检查记录是否存在
+        qw.eq("userid", userid);
+        qw.eq("movieid", movieid);
+        Preference preference = preferenceMapper.selectOne(qw);
+
+        if (preference != null) { // 更新
+            Double pref = preference.getPreference() + weight;
+            preference.setPreference(pref);
+            preferenceMapper.updateById(preference);
+        } else {      // 增加
+            preference = new Preference();
+            preference.setUserid(userid);
+            preference.setMovieid(movieid);
+            preference.setPreference(weight);
+
+            preferenceMapper.insert(preference);
+        }
+    }
 }
