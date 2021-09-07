@@ -100,7 +100,7 @@
             <c:forEach items = "${movies2}" var="movie">
                 <!-- one movie start -->
                 <div class="col-md-2 w3l-movie-gride-agile requested-movies">
-                    <a href="${ctx}/movie?movieid=${movie.id}&userid=${userId}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
+                    <a href="${ctx}/movie?movieId=${movie.id}&userId=${userId}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
                                                                            class="img-responsive" alt=" "
                                                                                            style=" width: 100%; height: 21vw;">
                         <div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>

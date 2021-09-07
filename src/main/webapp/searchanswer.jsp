@@ -181,7 +181,7 @@
                                 <c:forEach items="${searchanswerList}" var="v">
                                 <tr>
                                 <td>${v.id}</td>
-                                <td class="w3-list-img"><a href="${ctx}/movie?movieId=${v.id}&userId=0"><img src="${v.imageurl}" alt="" /> <span>${v.translatename}</span></a></td>
+                                <td class="w3-list-img"><a href="${ctx}/movie?movieId=${v.id}&userId=${userId}"><img src="${v.imageurl}" alt="" /> <span>${v.translatename}</span></a></td>
                                 <td>${v.year}</td>
                                 <td>${v.kinds}</td>
                                 <td class="w3-list-info"><a href="">${v.language}</a></td>

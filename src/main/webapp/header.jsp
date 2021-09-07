@@ -6,7 +6,8 @@
 
 <!--/main-header-->
 <!--/banner-section-->
-<div id="demo-1" data-zs-src='["${movies[0].imageurl}", "${movies[1].imageurl}", "${movies[2].imageurl}","${movies[3].imageurl}"]' data-zs-overlay="dots">
+<%--<div id="demo-1" data-zs-src='["${movies[0].imageurl}", "${movies[1].imageurl}", "${movies[2].imageurl}","${movies[3].imageurl}"]' data-zs-overlay="dots">--%>
+<div id="demo-1" data-zs-src='["images/2.jpg", "images/1.jpg", "images/3.jpg","images/4.jpg"]' data-zs-overlay="dots">
     <div class="demo-inner-content">
         <!--/header-w3l-->
         <div class="header-w3-agileits" id="home">
@@ -20,12 +21,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h1><a href="${ctx}/index"><span>七</span>零八落 <span>影</span>视</a></h1>
+                        <h1><a href="${ctx}/index?userId=${userId}"><span>七</span>零八落 <span>影</span>视</a></h1>
                     </div>
                     <!-- navbar-header -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="${ctx}/index">首页</a></li>
+                            <li class="active"><a href="${ctx}/index?userId=${userId}">首页</a></li>
                             <li><a href="${ctx}/userIndex">个人主页</a></li>
                             <li><a href="contact.html">联系我们</a></li>
                             <li>&nbsp;</li>
@@ -49,7 +50,7 @@
                         </ul> <!-- cd-header-buttons -->
                     </div>
                     <div id="cd-search" class="cd-search">
-                        <form action="${ctx}/searchanswer" method="post">
+                        <form action="${ctx}/searchanswer?userId=${userId}" method="post">
                             <input name="key" type="search" placeholder="Search...">
                         </form>
                     </div>
