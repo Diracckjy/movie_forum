@@ -28,7 +28,7 @@ public class SearchController {
 
     //电影搜索信息展示
     @RequestMapping("/searchanswer")
-    public String searchanswer(Model model, String key) { //k1是中文名，k2是英文名
+    public String searchanswer(Model model, String key,Integer userId) { //k1是中文名，k2是英文名
         QueryWrapper<Movie> qw=new QueryWrapper<Movie>();
         if(key!=null)
         {
@@ -38,6 +38,7 @@ public class SearchController {
         qw.orderByDesc("id"); //根据id降序排列
         List<Movie> searchanswerList = movieMapper.selectList(qw);
         model.addAttribute("searchanswerList", searchanswerList);
+        model.addAttribute("userId",userId);
         return "searchanswer";
     }
 

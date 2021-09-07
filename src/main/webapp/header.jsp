@@ -26,7 +26,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="${ctx}/index">首页</a></li>
-                            <li><a href="news.html">个人主页</a></li>
+                            <li><a href="${ctx}/userIndex">个人主页</a></li>
                             <li><a href="contact.html">联系我们</a></li>
                             <li>&nbsp;</li>
                             <c:choose>

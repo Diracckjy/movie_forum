@@ -1,7 +1,10 @@
 package com.example.movieforum.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.movieforum.entity.Post;
+import com.example.movieforum.entity.PostComments;
 import com.example.movieforum.entity.User;
+import com.example.movieforum.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,11 @@ public class UserController {
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    PostMapper postMapper;
+
+    private final String[] user_tag = {"id", "性别", "名字", "电话", "头像", "密码"};
+    private final String[] user_key = {"id","sex","name","phone","picture","password"};
 
 
     //进入后台首页
@@ -114,7 +122,7 @@ public class UserController {
     @RequestMapping("/userUpdate")
     public String userUpdate(Model model, User obj){
         userMapper.updateById(obj);
-        return "redirect:userList";
+        return "redirect:userInfo?id="+obj.getId();
     }
 
     // 根据号码和密码查询用户
@@ -130,6 +138,73 @@ public class UserController {
         return user != null;
     }
 
+    //进入个人首页
+    @RequestMapping("")
+    public String admin(Model model ,Integer id){
+        return "redirect:userIndex";
+    }
 
+    //进入后台首页
+    @RequestMapping("/userIndex")
+    public String adminIndex(Model model ,Integer id){
+        model.addAttribute("id",id);
+        return "userIndex";
+    }
+
+    //查询用户与帖子对应列表
+   // UserMapper userMapper;
+    @RequestMapping("/postList")
+    public String postList(Model model,Integer userid) {
+        QueryWrapper<Post> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userid",userid );
+        List<Post> posts = postMapper.selectList(queryWrapper);
+        model.addAttribute("dataList", posts);
+        return "user/postList";
+    }
+
+    //查询用户个人信息
+    // UserMapper userMapper;
+    @RequestMapping("/userInfo")
+    public String userList(Model model,int id) {
+//        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.eq("id",id );
+        model.addAttribute("length", user_key.length);
+        model.addAttribute("user_key", user_key);
+        model.addAttribute("user_tag", user_tag);
+        User user = userMapper.selectById(id);
+        model.addAttribute("dataList", user);
+        String[] user_info = new String[user_key.length];
+
+        //"id","sex","name","phone","picture","password"
+        user_info[0] = String.valueOf(user.getId());
+        user_info[1] = String.valueOf(user.getSex());
+        user_info[2] = String.valueOf(user.getName());
+        user_info[3] = String.valueOf(user.getPhone());
+        user_info[4] = String.valueOf(user.getPicture());
+        user_info[5] = String.valueOf(user.getPassword());
+
+        model.addAttribute("user_info", user_info);
+        return "user/userInfo";
+    }
+//        User user = userMapper.selectById(userid);//根据主键查询
+//        model.addAttribute("obj", user); //绑定参数
+//        QueryWrapper<Post> qw = new QueryWrapper<Post>();
+//        qw.orderByDesc("id"); //根据id降序排列
+//        // qw.inSql("id","select id from table where id  id");
+//        qw.eq("id", userid);
+//        List<Post> postList = postMapper.selectList(qw);
+
+//    // 管理员登录
+//    @RequestMapping("/login")
+//    public String login(Model model){
+//        return "admin/login";
+//    }
+//
+//    //登陆提交验证
+//    @RequestMapping("/loginSubmit")
+//    public String loginSubmit(Model model, String username, String password, String vcode, HttpSession session){
+//        session.setAttribute("adminname",username);
+//        return "admin/adminIndex";
+//    }
 
 }

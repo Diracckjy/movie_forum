@@ -135,7 +135,17 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
-                    <input type="text" name="content" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+
+                    <c:choose>
+                        <c:when test="${userId != 0}">    <!--如果 -->
+                            <input type="text" name="content" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+                        </c:when>
+                        <c:otherwise>  <!--否则 -->
+                            <input type="text" name="content" readonly  lay-verify="required" placeholder="请登录" autocomplete="off" class="layui-input">
+                        </c:otherwise>
+                    </c:choose>
+
+
                 </div>
             </div>
 
