@@ -139,7 +139,7 @@
             <c:forEach items = "${posts}" var="post">
                 <ul class="side-bar-agile">
                     <li>
-                        <a href="${ctx}/postDetail?id=${post.id}&userId=${userId}">
+                        <a href="${ctx}/user/postDetail?postId=${post.id}&userId=${userId}">
                             <h3>${post.title}</h3> <h4>评价电影：《${post.moviename}》</h4>
                         </a>
                         <p>${post.createtime}</p>

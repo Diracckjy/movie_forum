@@ -31,13 +31,6 @@ public class IndexController {
     @Autowired
     UserMapper userMapper;
 
-    //帖子详情页面    xxxxx/articleDetail?id=1000
-    @RequestMapping("/postDetail")
-    public String postDetail(Model model,int id){
-        Post post = postMapper.selectById(id);//根据主键查询
-        model.addAttribute("obj",post); //绑定参数
-        return "postDetail";
-    }
     // 启动系统默认进入首页  / 代表首页
     @RequestMapping("/")
     public String start(Model model){
