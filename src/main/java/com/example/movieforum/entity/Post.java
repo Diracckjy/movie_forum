@@ -12,6 +12,7 @@ public class Post {
     //？？？  在entity包中创建一个Comments类，用于操作数据库comments_info表
     @TableId(type = IdType.AUTO )   //下面这个属性是数据库表的主键 自动递增
     private int id;
+    private int userid;
     private String title;
     private String moviename;
     private String name;

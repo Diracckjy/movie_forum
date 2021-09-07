@@ -4,12 +4,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.movieforum.entity.Movie;
+import com.example.movieforum.entity.MovieComments;
+import com.example.movieforum.entity.User;
+import com.example.movieforum.mapper.MovieCommentsMapper;
 import com.example.movieforum.mapper.MovieMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @SpringBootTest
@@ -17,6 +22,9 @@ class MovieForumApplicationTests {
 
     @Autowired
     MovieMapper movieMapper;
+
+    @Autowired
+    MovieCommentsMapper movieCommentsMapper;
 
     @Test
     void contextLoads() {
@@ -111,6 +119,31 @@ class MovieForumApplicationTests {
 //
 //            movies2.add(tmp_movie);
 //        }
+    }
+
+
+    @Test
+    void a(){
+        // 参数
+        int movieid=20;
+        String context="adhjshkjdahjsdvhsdkljavhsdjk";
+        User user = new User();
+        user.setId(1);
+        user.setName("jjjjjjj");
+        LocalDate date = LocalDate.now(); // get the current date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // 根据参数构造movieComment对象
+        MovieComments movieComments = new MovieComments();
+        movieComments.setMovieid(movieid);
+        movieComments.setUserid(user.getId());
+        movieComments.setUsername(user.getName());
+        movieComments.setContext(context);
+        movieComments.setTime(date.format(formatter));
+
+        // 插入数据库
+        movieCommentsMapper.insert(movieComments);
+
     }
 
 }

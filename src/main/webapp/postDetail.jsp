@@ -81,6 +81,7 @@
         <tbody>
         <tr class="layui-bg-blue">
 <%--            <th>编号</th>--%>
+            <th>用户编号</th>
             <th>用户姓名</th>
             <th>内容</th>
             <th>创建时间</th>
@@ -90,25 +91,84 @@
         <c:forEach items="${dataList}" var="v">
             <tr>
 <%--                <td>${v.id}</td>--%>
+                <td>${v.userid}</td>
                 <td>${v.name}</td>
                 <td>${v.content}</td>
                 <td>${v.createtime}</td>
 <%--                <td>${v.postid}</td>--%>
 <%--                <td>--%>
-<%--                    <a href="${ctx}/user/postDelete?id=${v.id}" class="layui-btn layui-btn-danger layui-btn-sm">--%>
-<%--                        <i class="layui-icon layui-icon-delete"></i> 删除--%>
-<%--                    </a>--%>
-<%--                    <a href="${ctx}/user/postEdit?id=${v.id}" class="layui-btn layui-btn-info layui-btn-sm">--%>
-<%--                        <i class="layui-icon layui-icon-edit"></i> 修改--%>
-<%--                    </a>--%>
+
+<%--&lt;%&ndash;                    <a href="${ctx}/user/postEdit?id=${v.id}" class="layui-btn layui-btn-info layui-btn-sm">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <i class="layui-icon layui-icon-edit"></i> 修改&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    </a>&ndash;%&gt;--%>
 <%--                </td>--%>
             </tr>
         </c:forEach>
+<%--        <a href="${ctx}/user/postEdit1?id=" class="layui-btn layui-btn-danger layui-btn-sm">--%>
+<%--            <i class="layui-icon layui-icon-delete"></i> 点击此处添加该帖子的评论--%>
+<%--        </a>--%>
+
+
+
         </tbody>
+
     </table>
 
 
 </div>
+
+
+
+    <div class="layui-container" style="margin-top: 50px;">
+        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">内容</label>
+                <div class="layui-input-block">
+                    <input type="text" name="content" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">创建时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="createtime" required  lay-verify="date" placeholder="请输入创建时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">该帖子编号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="postid" readonly value="${obj.id}" placeholder="对应的帖子编号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            //Demo
+            layui.use('form', function(){
+                var form = layui.form;
+
+                //监听提交
+                form.on('submit(formDemo)', function(data){
+                    layer.msg(JSON.stringify(data.field));
+                    return true;
+                });
+            });
+        </script>
+    </div>
 <!--中间内容显示区域 edn-->
 
 

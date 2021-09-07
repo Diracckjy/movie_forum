@@ -18,7 +18,10 @@ public class User {
     private String picture;
     private String password;
 
+    public int getId() {
+        return 0;
+    }
+}
+
     //生成getset toString
 
-
-}

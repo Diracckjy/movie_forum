@@ -15,7 +15,9 @@ public class PostComments {
     private String name;
     private String content;
     private String createtime;
-    private int  postid;
+//    private int  postid;
+    public int  postid;
+    private int userid;
 
     //生成getset toString
 
