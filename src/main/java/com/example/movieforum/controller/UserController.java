@@ -43,7 +43,7 @@ public class UserController {
             return "login"; }
         User user = selectUserByPhoneAndPass(phone, password);
         if(hasUser(user)) {
-            return "redirect:index?user="+user;
+            return "redirect:index?userId="+user.getId();
         }else{
            model.addAttribute("msg","账号或者密码错误");
            return "login";
