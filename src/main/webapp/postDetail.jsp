@@ -120,7 +120,7 @@
 
 
     <div class="layui-container" style="margin-top: 50px;">
-        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert?userid=70">
+        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert?userid=70&postid=${obj.id}">
 <%--            <div class="layui-form-item">--%>
 <%--                <label class="layui-form-label">用户姓名</label>--%>
 <%--                <div class="layui-input-block">--%>
@@ -128,6 +128,10 @@
 <%--                </div>--%>
 <%--            </div>--%>
 
+    <div class="layui-container">
+        <div>
+            <h1 style="margin: 20px; text-align: center;">------------------------------------输入新的内容增加新的评论------------------------------------</h1>
+        </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
@@ -142,12 +146,12 @@
 <%--                </div>--%>
 <%--            </div>--%>
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">该帖子编号</label>
-                <div class="layui-input-block">
-                    <input type="text" name="postid" readonly value="${obj.id}" placeholder="对应的帖子编号" autocomplete="off" class="layui-input">
-                </div>
-            </div>
+<%--            <div class="layui-form-item">--%>
+<%--                <label class="layui-form-label">该帖子编号</label>--%>
+<%--                <div class="layui-input-block">--%>
+<%--                    <input type="text" name="postid" readonly value="${obj.id}" placeholder="对应的帖子编号" autocomplete="off" class="layui-input">--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>

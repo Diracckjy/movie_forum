@@ -88,13 +88,15 @@ public class PostController {
 
     //添加信息保存到数据库 insert
     @RequestMapping("/postCommentsInsert")
-    public String postCommentsInsert( Model model, Integer userid,String content, PostComments obj){
+    public String postCommentsInsert( Model model, Integer userid, PostComments obj,String content,int postid){
+
+//        PostComments obj
         LocalDate date = LocalDate.now(); // get the current date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // 根据参数构造movieComment对象
         PostComments postComments = new  PostComments();
-        postComments.setPostid(obj.postid);
+        postComments.setPostid(postid);
         postComments.setUserid(userid);
         User user = UserMapper.selectById(userid);
         postComments.setName(user.getName());

@@ -38,7 +38,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">作者名</label>
             <div class="layui-input-block">
-                <input type="text" name="name" value="${obj.name}" required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
+                <input type="text" name="name" value="${obj.name}" readonly required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
             </div>
         </div>
 

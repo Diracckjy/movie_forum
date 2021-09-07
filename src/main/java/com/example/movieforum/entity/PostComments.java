@@ -15,6 +15,9 @@ public class PostComments {
     private String name;
     private String content;
     private String createtime;
+    //    private int  postid;
+    public int  postid;
+    private int userid;
 
     public int getId() {
         return id;
@@ -40,9 +43,6 @@ public class PostComments {
         return userid;
     }
 
-    //    private int  postid;
-    public int  postid;
-    private int userid;
 
     public void setId(int id) {
         this.id = id;
