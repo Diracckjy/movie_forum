@@ -34,18 +34,18 @@ public class MovieController {
 
     // 电影详情
     @RequestMapping("/movie")
-    public String movie(Model model, Integer id) {
+    public String movie(Model model, Integer movieId, Integer userId) {
 //        QueryWrapper<Movie> qw=new QueryWrapper<Movie>();
 //        qw.orderByDesc("id"); //根据id降序排列
 //        List<Movie> movieList = movieMapper.selectList(qw);
 //        Integer id1=2;    //测试ID
 //        id=id1;           //测试ID
-        Movie movie = movieMapper.selectById(id);
+        Movie movie = movieMapper.selectById(movieId);
         model.addAttribute("movie", movie);
-
+        model.addAttribute("userId", userId);
 
         QueryWrapper<MovieComments> qw=new QueryWrapper<MovieComments>();
-        qw.eq("movieid",id);
+        qw.eq("movieid",movieId);
         qw.orderByDesc("id"); //根据id降序排列
         List<MovieComments> movieCommentsList = movieCommentsMapper.selectList(qw);
         model.addAttribute("movieCommentsList", movieCommentsList);
@@ -54,25 +54,26 @@ public class MovieController {
 
     //添加电影评论数据到数据库
     @RequestMapping("/moviecommentsadd")     //从主页传过来的userid
-    public String moviecommentsadd(Model model, Integer movieid, Integer userid, String context) {
+    public String moviecommentsadd(Model model, Integer movieId, Integer userId, String context) {
         LocalDate date = LocalDate.now(); // get the current date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-
         // 根据参数构造movieComment对象
         MovieComments movieComments = new MovieComments();
-        movieComments.setMovieid(movieid);
-        movieComments.setUserid(userid);
-        User user = userMapper.selectById(userid);
+        movieComments.setMovieid(movieId);
+        movieComments.setUserid(userId);
+
+        User user = userMapper.selectById(userId);
         movieComments.setUsername(user.getName());
         movieComments.setContext(context);
         movieComments.setTime(date.format(formatter));
 
         // 插入数据库
-        if (userid != 0) {   //确保用户登录之后才可以发表评论
+        if (userId != 0) {   //确保用户登录之后才可以发表评论
             movieCommentsMapper.insert(movieComments);
         }
-        return "redirect:movie?id="+movieid;
+        return "redirect:movie?movieId="+movieId
+                +"&userId="+userId;
     }
 
 }

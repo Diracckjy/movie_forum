@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @TableName("movie_info")  //指明需要操作的数据库表是movie_info，电影信息表
-@Data                     //自动生成get，set等方法
+@Data                     // 装lombok插件 自动生成get set  toString
 //电影实体类
 public class Movie {
     //这里的int类型使用Java自带的Integer类型，因为int有默认值为0，在数据库操作时可能会出错

@@ -24,7 +24,7 @@
 
 <body>
 <!--导航条 start-->
-<jsp:include page="header.jsp"></jsp:include>
+<%--<jsp:include page="header.jsp"></jsp:include>--%>
 <!--导航条 end-->
 
 
@@ -74,7 +74,7 @@
         </c:forEach>
         <!--中间内容显示区域 end-->
         <!--版权区域 start-->
-        <jsp:include page="footer.jsp"></jsp:include>
+<%--        <jsp:include page="footer.jsp"></jsp:include>--%>
         <!--版权区域 end-->
 </body>
 

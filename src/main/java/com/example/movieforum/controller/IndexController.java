@@ -6,6 +6,7 @@ import com.example.movieforum.entity.Post;
 import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.MovieMapper;
 import com.example.movieforum.mapper.PostMapper;
+import com.example.movieforum.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,13 +28,9 @@ public class IndexController {
     @Autowired
     MovieMapper movieMapper;
 
-    //帖子详情页面    xxxxx/articleDetail?id=1000
-    @RequestMapping("/postDetail")
-    public String postDetail(Model model,int id){
-        Post post = postMapper.selectById(id);//根据主键查询
-        model.addAttribute("obj",post); //绑定参数
-        return "postDetail";
-    }
+    @Autowired
+    UserMapper userMapper;
+
     // 启动系统默认进入首页  / 代表首页
     @RequestMapping("/")
     public String start(Model model){
@@ -42,17 +39,14 @@ public class IndexController {
 
     // 进入首页
     @RequestMapping("/index")
-    public String index(Model model, User user){
-
-        boolean hasuser = false;
-//        if(user.getId() != 0){
-//            hasuser = true;
-//        }
-        if(user != null){
-            hasuser = true;
+    public String index(Model model, Integer userId){
+        if(userId != null && userId!=0){
+            User user = userMapper.selectById(userId);
+            model.addAttribute("user", user);
+        }else {
+            userId = 0;
         }
-        model.addAttribute("user", user);
-        model.addAttribute("hasuser", hasuser);
+        model.addAttribute("userId", userId);
         // 随机获取8部电影
         ArrayList<Movie> movies = getMoviesRandom(8);
         model.addAttribute("movies", movies);

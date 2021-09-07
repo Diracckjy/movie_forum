@@ -30,8 +30,8 @@
                             <li><a href="contact.html">联系我们</a></li>
                             <li>&nbsp;</li>
                             <c:choose>
-                                <c:when test="${hasuser == true}">    <!--如果 -->
-                                    <li>${user.name}</li>
+                                <c:when test="${userId != 0}">    <!--如果 -->
+                                    <li><a>${user.name}</a></li>
                                 </c:when>
                                 <c:otherwise>  <!--否则 -->
                                     <li><a href="${ctx}/login">请登录</a></li>
