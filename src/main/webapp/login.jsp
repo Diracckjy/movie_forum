@@ -110,7 +110,7 @@
         </div>
         <button class="layui-btn login_btn" lay-submit="" lay-filter="${ctx}/login" id="btn">登录</button>
     </form>
-    <button class="layui-btn login_btn"><a href="${ctx}/register">注册</a></button>
+    <a href="${ctx}/register"><button class="layui-btn login_btn">注册</button></a>
 </div>
 
 <script type="text/javascript">
