@@ -23,7 +23,7 @@
 </head>
 <body>
 <!--导航条 start-->
-<jsp:include page="header.jsp"></jsp:include>
+<%--<jsp:include page="header.jsp"></jsp:include>--%>
 <!--导航条 end-->
 
 
@@ -50,10 +50,11 @@
 <%--    搜索框-end --%>
 <div class="title_all"><h1><font color=#07519a>${movie.date}${movie.kinds}${movie.name}BD${movie.subtitles}</font></h1></div>
 
+
 <div class="co_content8">
     <ul>
 
-        发布时间：2021-08-31
+        发布时间：${movie.date}
 
         <tr>
 
@@ -146,7 +147,14 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">留言内容</label>
                         <div class="layui-input-block">
-                            <input type="text" name="context" required  lay-verify="required" placeholder="请输入留言内容" autocomplete="off" class="layui-input">
+                            <c:choose>
+                                <c:when test="${userId != 0}">    <!--如果 -->
+                                    <input type="text" name="context" required  lay-verify="required" placeholder="请输入留言内容" autocomplete="off" class="layui-input">
+                                </c:when>
+                                <c:otherwise>  <!--否则 -->
+                                    <input type="text" name="context" readonly required  lay-verify="required" placeholder="请登录" autocomplete="off" class="layui-input">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
 
@@ -180,7 +188,7 @@
         <!--中间内容显示区域 end-->
 
         <!--版权区域 start-->
-        <jsp:include page="footer.jsp"></jsp:include>
+<%--        <jsp:include page="footer.jsp"></jsp:include>--%>
         <!--版权区域 end-->
 
 </body>
