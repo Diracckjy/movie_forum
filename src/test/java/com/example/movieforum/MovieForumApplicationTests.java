@@ -8,6 +8,7 @@ import com.example.movieforum.entity.MovieComments;
 import com.example.movieforum.entity.User;
 import com.example.movieforum.mapper.MovieCommentsMapper;
 import com.example.movieforum.mapper.MovieMapper;
+import com.example.movieforum.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +26,9 @@ class MovieForumApplicationTests {
 
     @Autowired
     MovieCommentsMapper movieCommentsMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Test
     void contextLoads() {
@@ -143,6 +147,20 @@ class MovieForumApplicationTests {
 
         // 插入数据库
         movieCommentsMapper.insert(movieComments);
+
+    }
+
+    @Test
+    void 查询用户(){
+        String phone = "15252523636";
+        String password = "123456";
+
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("phone", phone);
+        queryWrapper.eq("password", password);
+        User user = userMapper.selectOne(queryWrapper);
+
+        System.out.println("user = " + user);
 
     }
 
