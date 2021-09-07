@@ -120,7 +120,7 @@
 
 
     <div class="layui-container" style="margin-top: 50px;">
-        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert?userid=70&postid=${obj.id}">
+        <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postCommentsInsert?userId=${userId}&postId=${obj.id}">
 <%--            <div class="layui-form-item">--%>
 <%--                <label class="layui-form-label">用户姓名</label>--%>
 <%--                <div class="layui-input-block">--%>
@@ -135,7 +135,17 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
-                    <input type="text" name="content" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+
+                    <c:choose>
+                        <c:when test="${userId != 0}">    <!--如果 -->
+                            <input type="text" name="content" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+                        </c:when>
+                        <c:otherwise>  <!--否则 -->
+                            <input type="text" name="content" readonly  lay-verify="required" placeholder="请登录" autocomplete="off" class="layui-input">
+                        </c:otherwise>
+                    </c:choose>
+
+
                 </div>
             </div>
 

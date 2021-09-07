@@ -25,6 +25,7 @@ public class SearchController {
 //        return "searchanswer";
 //    }
 
+
     //电影搜索信息展示
     @RequestMapping("/searchanswer")
     public String searchanswer(Model model, String key) { //k1是中文名，k2是英文名

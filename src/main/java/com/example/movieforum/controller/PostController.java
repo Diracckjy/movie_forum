@@ -33,20 +33,19 @@ public class PostController {
 
 
 
-    //帖子详情页面    xxxxx/articleDetail?id=1000
+    // 帖子详情页面    xxxxx/articleDetail?id=1000
     @RequestMapping("/postDetail")
-    public String postDetail(Model model,int id){
-        Post post = postMapper.selectById(id);//根据主键查询
+    public String postDetail(Model model, Integer postId, Integer userId){
+        Post post = postMapper.selectById(postId);//根据主键查询
         model.addAttribute("obj",post); //绑定参数
-
 
         QueryWrapper<PostComments> qw=new QueryWrapper<PostComments>();
         qw.orderByDesc("id"); //根据id降序排列
        // qw.inSql("id","select id from table where id  id");
-        qw.eq("postid",id);
+        qw.eq("postid", postId);
         List<PostComments> postList = postcommentsMapper.selectList(qw);
         model.addAttribute("dataList",postList);
-
+        model.addAttribute("userId", userId);
 
         return "postDetail";
     }
@@ -88,7 +87,7 @@ public class PostController {
 
     //添加信息保存到数据库 insert
     @RequestMapping("/postCommentsInsert")
-    public String postCommentsInsert( Model model, Integer userid, PostComments obj,String content,int postid){
+    public String postCommentsInsert( Model model, Integer userId, PostComments obj,String content,Integer postId){
 
 //        PostComments obj
         LocalDate date = LocalDate.now(); // get the current date
@@ -96,19 +95,21 @@ public class PostController {
 
         // 根据参数构造movieComment对象
         PostComments postComments = new  PostComments();
-        postComments.setPostid(postid);
-        postComments.setUserid(userid);
-        User user = UserMapper.selectById(userid);
+        postComments.setPostid(postId);
+        postComments.setUserid(userId);
+        User user = UserMapper.selectById(userId);
         postComments.setName(user.getName());
         postComments.setContent(content);
         postComments.setCreatetime(date.format(formatter));
 
         // 插入数据库
-        if (userid != 0) {
+        if (userId != 0) {
             postcommentsMapper.insert(postComments);
         }
+
       //  postcommentsMapper.insert(obj);
-        return "redirect:postDetail?id="+obj.postid;
+        return "redirect:postDetail?postId="+postId
+                +"&userId="+userId;
     }
 //    @RequestMapping("/postCommentsInsert")
 //    public String postCommentsInsert(Model model, PostComments obj, Integer id){
