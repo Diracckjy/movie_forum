@@ -6,7 +6,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <title>学生信息添加</title>
+    <title>帖子信息添加</title>
     <!--引入layui 样式-->
     <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
     <!--引入layui js-->

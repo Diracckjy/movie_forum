@@ -132,6 +132,44 @@ public class PostController {
         return "redirect:postList";
     }
 
+    @RequestMapping("/postInsert")
+    public String postInsert(Model model,Integer userId, String content,String title,String moviename){
+
+
+
+        LocalDate date = LocalDate.now(); // get the current date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // 根据参数构造movieComment对象
+        Post post = new  Post();
+//        post.setPostid(postId);
+        post.setUserid(userId);
+        User user = UserMapper.selectById(userId);
+        post.setName(user.getName());
+        post.setContent(content);
+        post.setCreatetime(date.format(formatter));
+        post.setTitle(title);
+        post.setMoviename(moviename);
+        model.addAttribute("userId",userId);
+        // 插入数据库
+        if (userId != 0) {
+            postMapper.insert(post);
+        }
+
+
+
+
+        return "redirect:postList";
+    }
+
+
+    //跳转到添加页面
+    @RequestMapping("/postAdd")
+    public String studentAdd(Model model,Integer userId){
+        model.addAttribute("userId",userId);
+        return "user/postAdd";
+    }
+
 //    @RequestMapping("/postList1")
 //    public String postList1(Model model,int id){
 //        QueryWrapper<Post> qw=new QueryWrapper<Post>();
