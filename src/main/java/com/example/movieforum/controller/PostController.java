@@ -96,20 +96,6 @@ public class PostController {
 
 
 
-    //跳转到添加页面
-//    @RequestMapping("/postCommentsAdd")
-//    public String postCommentsAdd(Model model,PostComments obj,Integer id){
-//        postcommentsMapper.updateById(obj);
-//        return "postDetail?id="+id;
-//    }
-
-    //查询当前信息跳转到修改页面
-//    @RequestMapping("/postEdit1")
-//    public String postEdit1(Model model, Integer id){
-//        PostComments postComments= postcommentsMapper.selectById(id);
-//        model.addAttribute("ans",postComments);
-//        return "user/postCommentsAdd?id="+id;
-//    }
 
     //添加信息保存到数据库 insert
     @RequestMapping("/postCommentsInsert")
@@ -137,11 +123,7 @@ public class PostController {
         return "redirect:postDetail?postId="+postId
                 +"&userId="+userId;
     }
-//    @RequestMapping("/postCommentsInsert")
-//    public String postCommentsInsert(Model model, PostComments obj, Integer id){
-//        postcommentsMapper.insert(obj);
-//        return "redirect:postDetail?id="+id;
-//    }
+
 
     //查询当前信息跳转到修改页面
     @RequestMapping("/postEdit")
@@ -216,34 +198,6 @@ public class PostController {
         return "user/postAdd";
     }
 
-//    @RequestMapping("/postList1")
-//    public String postList1(Model model,int id){
-//        QueryWrapper<Post> qw=new QueryWrapper<Post>();
-//        qw.orderByDesc("id"); //根据id降序排列
-//        List<Post> postCommentsAdd = postMapper.selectList(qw);
-//        model.addAttribute("obj",postCommentsAdd);
-//        return "user/postCommentsAdd";
-//
-
-//        Post post = postMapper.selectById(id);//根据主键查询
-//        model.addAttribute("obj",post); //绑定参数
-
-
-//        QueryWrapper<PostComments> qw=new QueryWrapper<PostComments>();
-//        qw.orderByDesc("id"); //根据id降序排列
-//        // qw.inSql("id","select id from table where id  id");
-//        qw.eq("postid",id);
-//    }
-
-    //添加电影评论数据到数据库
-
-
-
-//    @RequestMapping("/postcommentsadd")     //从主页传过来的user
-//    public String postcommentsadd(Model model, Integer postid, User user, String content) {
-//
-//        return "redirect:movie?id="+postid;
-//    }
 
 
 

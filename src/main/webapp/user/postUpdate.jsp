@@ -16,12 +16,7 @@
 <div class="layui-container" style="margin-top: 50px;">
     <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postUpdate?userId=${userid}&postId=${obj.id}">
 
-<%--        <div class="layui-form-item">--%>
-<%--            <label class="layui-form-label">帖子编号</label>--%>
-<%--            <div class="layui-input-block">--%>
-<%--                <input type="text" name="id" value="${obj.id}" readonly required  lay-verify="required" placeholder="请输入帖子编号" autocomplete="off" class="layui-input">--%>
-<%--            </div>--%>
-<%--        </div>--%>
+
  <div class="layui-form-item">
             <label class="layui-form-label">帖子标题</label>
             <div class="layui-input-block">
@@ -35,12 +30,7 @@
                 <input type="text" name="moviename" value="${obj.moviename}" required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
             </div>
         </div>
-<%--        <div class="layui-form-item">--%>
-<%--            <label class="layui-form-label">作者名</label>--%>
-<%--            <div class="layui-input-block">--%>
-<%--                <input type="text" name="name" value="${obj.name}" readonly required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">--%>
-<%--            </div>--%>
-<%--        </div>--%>
+
 
         <div class="layui-form-item">
             <label class="layui-form-label">内容</label>
@@ -48,12 +38,7 @@
                 <input type="text" name="content" value="${obj.content}" required  lay-verify="required" placeholder="请输入帖子内容" autocomplete="off" class="layui-input">
             </div>
         </div>
-<%--        <div class="layui-form-item">--%>
-<%--            <label class="layui-form-label">创建时间</label>--%>
-<%--            <div class="layui-input-block">--%>
-<%--                <input type="text" name="createtime" value="${obj.createtime}" required  lay-verify="date" placeholder="请输入创建时间" autocomplete="off" class="layui-input">--%>
-<%--            </div>--%>
-<%--        </div>--%>
+
 
         <div class="layui-form-item">
             <div class="layui-input-block">
