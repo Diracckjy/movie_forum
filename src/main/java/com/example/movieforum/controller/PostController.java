@@ -66,10 +66,36 @@ public class PostController {
 
     //根据主键删除信息 delete
     @RequestMapping("/postDelete")
-    public String postDelete(Model model, Integer id){
+    public String postDelete(Model model, Integer id,Integer userId){
         postMapper.deleteById(id);
-        return "redirect:postList";
+        //return "redirect:postList";
+        //return "redirect: user/postList?userid="+userId;
+        //model.addAttribute(,userId);
+        QueryWrapper<Post> qw=new QueryWrapper<Post>();
+        qw.orderByDesc("id"); //根据id降序排列
+        List<Post> postList = postMapper.selectList(qw);
+        model.addAttribute("dataList",postList);
+        model.addAttribute("id",userId);
+        return "redirect:postList1?userid="+userId;
+        //return "user/postList";
+
+
+
+
     }
+
+
+    @RequestMapping("/postList1")
+    public String postList1(Model model,Integer userid) {
+        QueryWrapper<Post> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userid",userid );
+        List<Post> posts = postMapper.selectList(queryWrapper);
+        model.addAttribute("dataList", posts);
+        return "user/postList";
+    }
+
+
+
     //跳转到添加页面
 //    @RequestMapping("/postCommentsAdd")
 //    public String postCommentsAdd(Model model,PostComments obj,Integer id){
@@ -119,17 +145,35 @@ public class PostController {
 
     //查询当前信息跳转到修改页面
     @RequestMapping("/postEdit")
-    public String postEdit(Model model, Integer id){
+    public String postEdit(Model model, Integer id,Integer userId){
         Post post= postMapper.selectById(id);
         model.addAttribute("obj",post);
+        model.addAttribute("userid",userId);
         return "user/postUpdate";
+       // return "redirect:user/postUpdate?userid="+userId;
     }
 
     //修改信息保存到数据库 update
     @RequestMapping("/postUpdate")
-    public String postUpdate(Model model, Post obj){
+    public String postUpdate(Model model, Post obj,Integer userId,Integer postId){
+        obj.setUserid(userId);
+        obj.setId(postId);
+        LocalDate date = LocalDate.now(); // get the current date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        obj.setCreatetime(date.format(formatter));
+
         postMapper.updateById(obj);
-        return "redirect:postList";
+
+
+        QueryWrapper<Post> qw=new QueryWrapper<Post>();
+        qw.orderByDesc("id"); //根据id降序排列
+        List<Post> postList = postMapper.selectList(qw);
+        model.addAttribute("dataList",postList);
+        model.addAttribute("id",userId);
+
+
+        return "redirect:postList1?userid="+userId;
+        //return "redirect:postList";
     }
 
     @RequestMapping("/postInsert")
@@ -159,13 +203,15 @@ public class PostController {
 
 
 
-        return "redirect:postList";
+      return "user/postAdd";
+       // return "userIndex?id="+ userId;
+
     }
 
 
     //跳转到添加页面
     @RequestMapping("/postAdd")
-    public String studentAdd(Model model,Integer userId){
+    public String postAdd(Model model,Integer userId){
         model.addAttribute("userId",userId);
         return "user/postAdd";
     }

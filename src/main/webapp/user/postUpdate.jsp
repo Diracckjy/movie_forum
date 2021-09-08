@@ -14,15 +14,15 @@
 </head>
 <body>
 <div class="layui-container" style="margin-top: 50px;">
-    <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postUpdate">
+    <form class="layui-form  layui-form-pane" method="post" action="${ctx}/user/postUpdate?userId=${userid}&postId=${obj.id}">
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">帖子编号</label>
-            <div class="layui-input-block">
-                <input type="text" name="id" value="${obj.id}" readonly required  lay-verify="required" placeholder="请输入帖子编号" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
+<%--        <div class="layui-form-item">--%>
+<%--            <label class="layui-form-label">帖子编号</label>--%>
+<%--            <div class="layui-input-block">--%>
+<%--                <input type="text" name="id" value="${obj.id}" readonly required  lay-verify="required" placeholder="请输入帖子编号" autocomplete="off" class="layui-input">--%>
+<%--            </div>--%>
+<%--        </div>--%>
+ <div class="layui-form-item">
             <label class="layui-form-label">帖子标题</label>
             <div class="layui-input-block">
                 <input type="text" name="title" value="${obj.title}" required  lay-verify="required" placeholder="请输入帖子主题" autocomplete="off" class="layui-input">
@@ -32,15 +32,15 @@
               <div class="layui-form-item">
             <label class="layui-form-label">片名</label>
             <div class="layui-input-block">
-                <input type="text" name="name" value="${obj.moviename}" required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
+                <input type="text" name="moviename" value="${obj.moviename}" required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">作者名</label>
-            <div class="layui-input-block">
-                <input type="text" name="name" value="${obj.name}" readonly required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">
-            </div>
-        </div>
+<%--        <div class="layui-form-item">--%>
+<%--            <label class="layui-form-label">作者名</label>--%>
+<%--            <div class="layui-input-block">--%>
+<%--                <input type="text" name="name" value="${obj.name}" readonly required  lay-verify="required" placeholder="请输入片名" autocomplete="off" class="layui-input">--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
         <div class="layui-form-item">
             <label class="layui-form-label">内容</label>

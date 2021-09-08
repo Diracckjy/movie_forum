@@ -23,8 +23,8 @@
     <table class="layui-table">
         <tbody>
         <tr class="layui-bg-blue">
-            <th>编号</th>
-            <th>用户编号</th>
+<%--            <th>编号</th>--%>
+<%--            <th>用户编号</th>--%>
             <th>标题</th>
             <th>片名</th>
             <th>作者名</th>
@@ -34,18 +34,18 @@
         </tr>
         <c:forEach items="${dataList}" var="v">
             <tr>
-                <td>${v.id}</td>
-                <td>${v.userid}</td>
+<%--                <td>${v.id}</td>--%>
+<%--                <td>${v.userid}</td>--%>
                 <td>${v.title}</td>
                 <td>${v.moviename}</td>
                 <td>${v.name}</td>
                 <td>${v.content}</td>
                 <td>${v.createtime}</td>
                 <td>
-                    <a href="${ctx}/user/postDelete?id=${v.id}" class="layui-btn layui-btn-danger layui-btn-sm">
+                    <a href="${ctx}/user/postDelete?id=${v.id}&userId=${v.userid}" class="layui-btn layui-btn-danger layui-btn-sm">
                         <i class="layui-icon layui-icon-delete"></i> 删除
                     </a>
-                    <a href="${ctx}/user/postEdit?id=${v.id}" class="layui-btn layui-btn-info layui-btn-sm">
+                    <a href="${ctx}/user/postEdit?id=${v.id}&userId=${v.userid}" class="layui-btn layui-btn-info layui-btn-sm">
                         <i class="layui-icon layui-icon-edit"></i> 修改
                     </a>
                 </td>

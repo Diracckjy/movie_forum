@@ -57,12 +57,12 @@
                         <dd><a target="adminIndex" href="${ctx}/user/postAdd?userId=${id}">发表帖子</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">我的帖子评论</a>
-                    <dl class="layui-nav-child">
-                        <dd><a target="adminIndex" href="${ctx}/postDetail?">评论详情</a></dd>
-                    </dl>
-                </li>
+<%--                <li class="layui-nav-item">--%>
+<%--                    <a href="javascript:;">我的帖子评论</a>--%>
+<%--                    <dl class="layui-nav-child">--%>
+<%--                        <dd><a target="adminIndex" href="${ctx}/postDetail?">评论详情</a></dd>--%>
+<%--                    </dl>--%>
+<%--                </li>--%>
             </ul>
         </div>
     </div>
