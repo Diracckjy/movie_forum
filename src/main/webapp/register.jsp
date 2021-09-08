@@ -17,12 +17,6 @@
 <div class="layui-container" style="margin-top:7% ;margin-left: 25%">
     <h1 style="margin-left:40%">注册</h1>
     <form class="layui-form  layui-form-pane" method="post" action="${ctx}/userRegister">
-        <div class="layui-form-item">
-            <label class="layui-form-label">ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="id" required  lay-verify="required" placeholder="请输入ID" autocomplete="off" class="layui-input">
-            </div>
-        </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">名字</label>
@@ -47,9 +41,9 @@
 
 
         <div class="layui-form-item">
-            <label class="layui-form-label">头像</label>
+            <label class="layui-form-label">年龄</label>
             <div class="layui-input-block">
-                <input type="text" name="picture" required  lay-verify="required" placeholder="请输入头像" autocomplete="off" class="layui-input">
+                <input type="text" name="age" required  lay-verify="required" placeholder="请输入年龄" autocomplete="off" class="layui-input">
             </div>
         </div>
 
