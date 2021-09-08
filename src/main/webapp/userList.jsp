@@ -27,7 +27,7 @@
             <th>姓名</th>
             <th>性别</th>
             <th>电话</th>
-            <th>头像</th>
+            <th>年龄</th>
             <th>密码</th>
             <th>操作</th>
         </tr>
@@ -37,7 +37,7 @@
                 <td>${v.name}</td>
                 <td>${v.sex}</td>
                 <td>${v.phone}</td>
-                <td>${v.picture}</td>
+                <td>${v.age}</td>
                 <td>${v.password}</td>
                 <td>
                     <a href="${ctx}/userDelete?id=${v.id}" class="layui-btn layui-btn-danger layui-btn-sm">
