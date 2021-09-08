@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.movieforum.entity.Movie;
 import com.example.movieforum.entity.Post;
 import com.example.movieforum.entity.User;
+import com.example.movieforum.entity.UserPreference;
 import com.example.movieforum.mapper.MovieMapper;
 import com.example.movieforum.mapper.PostMapper;
 import com.example.movieforum.mapper.UserMapper;
+import com.example.movieforum.mapper.UserPreferenceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,9 @@ public class IndexController {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    UserPreferenceMapper userPreferenceMapper;
+
     // 启动系统默认进入首页  / 代表首页
     @RequestMapping("/")
     public String start(Model model){
@@ -49,14 +54,22 @@ public class IndexController {
         model.addAttribute("userId", userId);
         // 随机获取8部电影
         ArrayList<Movie> movies = getMoviesRandom(8);
-        model.addAttribute("movies", movies);
 
-        // 随机获取10部电影
+        // 随机获取10部随机电影
         ArrayList<Movie> movies2 = getMoviesRandom(10);
-        model.addAttribute("movies2", movies2);
+
+        // 随机获取推荐电影
+        ArrayList<Movie> recommendMovies = getRecommendMovies(userId);
+        int length = Math.min(recommendMovies.size(), movies2.size());
+        for (int i = 0; i < length; i++) {
+            movies2.set(i, recommendMovies.get(i));
+        }
 
         // 随机获取4个帖子
         ArrayList<Post> posts = getPosts(4);
+
+        model.addAttribute("movies", movies);
+        model.addAttribute("movies2", movies2);
         model.addAttribute("posts", posts);
 
         return "index"; // 返回首页
@@ -121,6 +134,31 @@ public class IndexController {
             posts.add(postList.get(tmp));
         }
         return posts;
+    }
+
+    // 获取推荐电影
+    private ArrayList<Movie> getRecommendMovies(int userid){
+        UserPreference userPreference = userPreferenceMapper.selectById(userid);
+        String[] kinds = userPreference.getKinds().split("/");
+        ArrayList<Movie> recommend_movies = new ArrayList<>();
+        Set<Integer> set = new HashSet<Integer>();
+        Random random = new Random();
+        // 推荐kinds.length部，最多10部
+        QueryWrapper<Movie> movieQueryWrapper = new QueryWrapper<>();;
+        for (String kind: kinds){
+            movieQueryWrapper.like("kinds", kind);
+            List<Movie> movies = movieMapper.selectList(movieQueryWrapper);
+            // 每个类型随机取一部;
+            int tmp = random.nextInt(movies.size());
+            if (set.contains(movies.get(tmp).getId())){
+                set.add(movies.get(tmp).getId());
+                continue;       // 已经有同类型的跳过
+            }
+            set.add(movies.get(tmp).getId());
+            recommend_movies.add(movies.get(tmp));
+
+        }
+        return recommend_movies;
     }
 
 }

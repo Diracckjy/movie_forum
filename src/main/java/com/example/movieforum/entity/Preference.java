@@ -18,4 +18,6 @@ public class Preference {
     // 不要忘了给数据库的 double类型设置小数点
     private Double preference;
 
+    private String timestamp;
+
 }

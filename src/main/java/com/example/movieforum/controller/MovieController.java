@@ -1,14 +1,8 @@
 package com.example.movieforum.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.movieforum.entity.Movie;
-import com.example.movieforum.entity.MovieComments;
-import com.example.movieforum.entity.Preference;
-import com.example.movieforum.entity.User;
-import com.example.movieforum.mapper.MovieCommentsMapper;
-import com.example.movieforum.mapper.MovieMapper;
-import com.example.movieforum.mapper.PreferenceMapper;
-import com.example.movieforum.mapper.UserMapper;
+import com.example.movieforum.entity.*;
+import com.example.movieforum.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +28,9 @@ public class MovieController {
     @Autowired
     PreferenceMapper preferenceMapper;
 
+    @Autowired
+    UserPreferenceMapper userPreferenceMapper;
+
     // 电影详情
     @RequestMapping("/movie")
     public String movie(Model model, Integer movieId, Integer userId) {
@@ -49,8 +46,9 @@ public class MovieController {
         List<MovieComments> movieCommentsList = movieCommentsMapper.selectList(qw);
         model.addAttribute("movieCommentsList", movieCommentsList);
 
-        if(userId != 0) updatePreference(userId, movieId, 0.5);
-
+//        if(userId != 0) updatePreference(userId, movieId, 0.005);
+        // 更新用户偏好
+        if(userId != 0) updatePreference(userId, movieId);
         return "movie";
     }
 
@@ -112,35 +110,76 @@ public class MovieController {
         if (userId != 0) {   //确保用户登录之后才可以发表评论
             movieCommentsMapper.insert(movieComments);
         }
-        if(userId != 0) updatePreference(userId, movieId, 1.0);
+//        if(userId != 0) updatePreference(userId, movieId, 0.01);
 
         return "redirect:movie?movieId="+movieId
                 +"&userId="+userId;
     }
 
     // 更新偏好表，浏览增加0.5的权重，评论增加1.0的权重
-    private void updatePreference(int userid, int movieid, Double weight){
-        QueryWrapper<Preference> qw = new QueryWrapper<>();
+//    private void updatePreference(int userid, int movieid, Double weight){
+//        QueryWrapper<Preference> qw = new QueryWrapper<>();
+//
+//        // 先检查记录是否存在
+//        qw.eq("userid", userid);
+//        qw.eq("movieid", movieid);
+//        Preference preference = preferenceMapper.selectOne(qw);
+//
+//        if (preference != null) { // 更新
+//            Double pref = preference.getPreference() + weight;
+//            preference.setPreference(pref);
+//            preferenceMapper.update(preference, qw);
+//        } else {      // 增加
+//            preference = new Preference();
+//            preference.setUserid(userid);
+//            preference.setMovieid(movieid);
+//            preference.setPreference(weight);
+//
+//            preferenceMapper.insert(preference);
+//        }
+//    }
+
+
+
+    // 更新用户偏好
+    private void updatePreference(int userid, int movieid){
+        QueryWrapper<Movie> movie_qw = new QueryWrapper<>();
+        movie_qw.eq("id", movieid);
+        Movie movie = movieMapper.selectOne(movie_qw);
 
         // 先检查记录是否存在
-        qw.eq("userid", userid);
-        qw.eq("movieid", movieid);
-        Preference preference = preferenceMapper.selectOne(qw);
+        UserPreference userPreference = userPreferenceMapper.selectById(userid);
+        if(userPreference != null){ // 更新
+            StringBuilder result_kinds = new StringBuilder(userPreference.getKinds());
+            String u_kinds = result_kinds.toString();
+            String m_kinds = movie.getKinds();
+            String[] split = u_kinds.split("/");
+            String[] movie_kinds = m_kinds.split("/");
 
-        if (preference != null) { // 更新
-            Double pref = preference.getPreference() + weight;
-            preference.setPreference(pref);
-            preferenceMapper.updateById(preference);
-        } else {      // 增加
-            preference = new Preference();
-            preference.setUserid(userid);
-            preference.setMovieid(movieid);
-            preference.setPreference(weight);
+            for (String kind: movie_kinds) {
+                boolean has = false;
+                // 查重
+                for (String kin: split) {
+                    if(kin.equals(kind)){
+                        has = true;
+                        break;
+                    }
+                }
+                if (!has){
+                    result_kinds.append("/").append(kind);
+                }
+            }
 
-            preferenceMapper.insert(preference);
+            userPreference.setKinds(result_kinds.toString());
+            userPreferenceMapper.updateById(userPreference);
+
+        }else{  // 插入
+            UserPreference tmp = new UserPreference();
+            tmp.setUserid(userid);
+            tmp.setKinds(movie.getKinds());
+
+            userPreferenceMapper.insert(tmp);
         }
     }
-
-
 
 }
