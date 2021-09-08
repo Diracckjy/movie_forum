@@ -41,7 +41,7 @@
                 <td>${v.name}</td>
                 <td>${v.content}</td>
                 <td>${v.createtime}</td>
-                <td>
+                <td style="width: 200px;">
                     <a href="${ctx}/user/postDelete?id=${v.id}&userId=${v.userid}" class="layui-btn layui-btn-danger layui-btn-sm">
                         <i class="layui-icon layui-icon-delete"></i> 删除
                     </a>
