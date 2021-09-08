@@ -3,21 +3,24 @@ package com.example.movieforum;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.movieforum.entity.Movie;
-import com.example.movieforum.entity.MovieComments;
-import com.example.movieforum.entity.Post;
-import com.example.movieforum.entity.User;
-import com.example.movieforum.mapper.MovieCommentsMapper;
-import com.example.movieforum.mapper.MovieMapper;
-import com.example.movieforum.mapper.PostMapper;
-import com.example.movieforum.mapper.UserMapper;
+import com.example.movieforum.entity.*;
+import com.example.movieforum.mapper.*;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.model.jdbc.MySQLJDBCDataModel;
+import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
+import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
+import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.model.DataModel;
+import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
+import org.apache.mahout.cf.taste.recommender.RecommendedItem;
+import org.apache.mahout.cf.taste.recommender.UserBasedRecommender;
+import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.example.movieforum.entity.Preference;
-import com.example.movieforum.mapper.PreferenceMapper;
 
-
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,6 +43,9 @@ class MovieForumApplicationTests {
 
     @Autowired
     PreferenceMapper preferenceMapper;
+
+    @Autowired
+    UserPreferenceMapper userPreferenceMapper;
 
     @Test
     void contextLoads() {
@@ -207,5 +213,161 @@ class MovieForumApplicationTests {
 
             preferenceMapper.insert(preference);
         }
+    }
+
+    @Test
+    void 测试记录用户推荐(){
+        int userid = 1;
+        int movieId = 2;
+        QueryWrapper<Movie> movie_qw = new QueryWrapper<>();
+        movie_qw.eq("id", movieId);
+        Movie movie = movieMapper.selectOne(movie_qw);
+
+        // 先检查记录是否存在
+        UserPreference userPreference = userPreferenceMapper.selectById(userid);
+        if(userPreference != null){ // 更新
+            StringBuilder result_kinds = new StringBuilder(userPreference.getKinds());
+            String u_kinds = result_kinds.toString();
+            String m_kinds = movie.getKinds();
+            String[] split = u_kinds.split("/");
+            String[] movie_kinds = m_kinds.split("/");
+
+            for (String kind: movie_kinds) {
+                boolean has = false;
+                // 查重
+                for (String kin: split) {
+                    if(kin.equals(kind)){
+                        has = true;
+                        break;
+                    }
+                }
+                if (!has){
+                    result_kinds.append("/").append(kind);
+                }
+            }
+
+            userPreference.setKinds(result_kinds.toString());
+            userPreferenceMapper.updateById(userPreference);
+
+        }else{  // 插入
+            UserPreference tmp = new UserPreference();
+            tmp.setUserid(userid);
+            tmp.setKinds(movie.getKinds());
+
+            userPreferenceMapper.insert(tmp);
+        }
+
+    }
+
+    @Test
+    void 测试根据用户偏好获取电影(){
+        int userid = 1;
+
+        UserPreference userPreference = userPreferenceMapper.selectById(userid);
+        String[] kinds = userPreference.getKinds().split("/");
+        ArrayList<Movie> recommend_movies = new ArrayList<>();
+        Set<Integer> set = new HashSet<Integer>();
+        Random random = new Random();
+        // 推荐kinds.length部，最多10部
+        QueryWrapper<Movie> movieQueryWrapper = new QueryWrapper<>();;
+        for (String kind: kinds){
+            movieQueryWrapper.like("kinds", kind);
+            List<Movie> movies = movieMapper.selectList(movieQueryWrapper);
+            // 每个类型随机取一部;
+            int tmp = random.nextInt(movies.size());
+            if (set.contains(movies.get(tmp).getId())){
+                set.add(movies.get(tmp).getId());
+                continue;       // 已经有同类型的跳过
+            }
+            set.add(movies.get(tmp).getId());
+            recommend_movies.add(movies.get(tmp));
+
+        }
+        System.out.println("recommend_movies = " + recommend_movies);
+    }
+
+    @Test
+    void 测试协同过滤用户推荐() throws TasteException, ClassNotFoundException {
+        int userId = 4;
+        int n = 2;
+
+        MysqlDataSource dataSource = new MysqlDataSource();
+        dataSource.setServerName("47.115.205.250");//本地为localhost
+        dataSource.setUser("movie_forum");
+        dataSource.setPassword("movie_forum");
+        dataSource.setDatabaseName("movie_forum");//数据库名
+
+        //获取模型
+        DataModel model = new MySQLJDBCDataModel(dataSource, "preference_table", "userid",
+                "movieid", "preference", "timestamp");
+        UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+        UserNeighborhood neighborhood = new ThresholdUserNeighborhood(3.0, similarity, model);
+        UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
+        List<RecommendedItem> recommendations = recommender.recommend(userId, 3);
+
+        for (RecommendedItem recommendation : recommendations) {
+            System.out.println(recommendation);
+        }
+
+        /*
+        *
+                //用户相似度，多种方法
+                //皮尔逊相关系数,未引入权重,同余弦相似度
+                //UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+                // 皮尔逊相关系数,引入了权重
+                //UserSimilarity similarity = new PearsonCorrelationSimilarity(model,Weighting.WEIGHTED);
+                // 欧式距离定义相似度
+                //UserSimilarity similarity = new EuclideanDistanceSimilarity(model);
+                // 斯皮尔曼相关系数
+                //UserSimilarity similarity = new SpearmanCorrelationSimilarity(model);
+                // 斯皮尔曼相关系数 缓存级别的
+                //UserSimilarity similarity = new CachingUserSimilarity(new SpearmanCorrelationSimilarity(model), model);
+                // 谷本系数（忽略偏好值的）
+                // UserSimilarity similarity = new TanimotoCoefficientSimilarity(model);
+                // 对数似然法
+                UserSimilarity similarity = new LogLikelihoodSimilarity(model);
+                //用户邻居
+                UserNeighborhood neighborhood = new NearestNUserNeighborhood(2, similarity, model);
+        * */
+
+//        //计算相似度
+//        UserSimilarity similarity1 = new PearsonCorrelationSimilarity(model);
+//        UserSimilarity similarity2 = new PearsonCorrelationSimilarity(model, Weighting.WEIGHTED);
+//        UserSimilarity similarity3 = new EuclideanDistanceSimilarity(model);
+//        UserSimilarity similarity4 = new SpearmanCorrelationSimilarity(model);
+//        // 谷本系数（忽略偏好值的）
+//         UserSimilarity similarity5 = new TanimotoCoefficientSimilarity(model);
+//        // 对数似然法
+//        UserSimilarity similarity6 = new LogLikelihoodSimilarity(model);
+//
+//        //计算阈值,选择邻近的2个用户
+//        UserNeighborhood neighborhood = new ThresholdUserNeighborhood(3.0, similarity1, model);
+//
+//        //推荐集合
+//        Recommender recommender = new GenericUserBasedRecommender(model,neighborhood,similarity1);
+//
+//        List<RecommendedItem> recommendedItems = recommender.recommend(userId,n);
+//
+//        System.out.println("recommendedItems = " + recommendedItems);
+
+        /*
+        * //推荐数量 为n的一个合集,这里数量可以修改
+        List<RecommendedItem> recommendedItems = recommender.recommend(userId,n);
+        int kl_idArray[] = new int[recommendedItems.size()];
+        for (int i=0;i<recommendedItems.size();i++){
+            kl_idArray[i] = (int) recommendedItems.get(i).getItemID();
+        }
+        //下面是测试用的代码
+        for (RecommendedItem recommendation : recommendedItems) {
+            System.out.println(recommendation);
+        }
+        System.out.println("-------------");
+
+        for (int i= 0;i<kl_idArray.length;i++){
+            System.out.println(kl_idArray[i]);
+        }
+        *
+        * */
+
     }
 }
