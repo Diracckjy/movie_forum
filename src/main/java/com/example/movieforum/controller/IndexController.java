@@ -59,10 +59,12 @@ public class IndexController {
         ArrayList<Movie> movies2 = getMoviesRandom(10);
 
         // 随机获取推荐电影
-        ArrayList<Movie> recommendMovies = getRecommendMovies(userId);
-        int length = Math.min(recommendMovies.size(), movies2.size());
-        for (int i = 0; i < length; i++) {
-            movies2.set(i, recommendMovies.get(i));
+        if(userId != 0){
+            ArrayList<Movie> recommendMovies = getRecommendMovies(userId);
+            int length = Math.min(recommendMovies.size(), movies2.size());
+            for (int i = 0; i < length; i++) {
+                movies2.set(i, recommendMovies.get(i));
+            }
         }
 
         // 随机获取4个帖子
