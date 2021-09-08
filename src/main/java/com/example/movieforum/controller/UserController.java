@@ -26,8 +26,8 @@ public class UserController {
     @Autowired
     PostMapper postMapper;
 
-    private final String[] user_tag = {"id", "性别", "名字", "电话", "头像", "密码"};
-    private final String[] user_key = {"id","sex","name","phone","picture","password"};
+    private final String[] user_tag = {"id", "性别", "名字", "电话", "密码"};
+    private final String[] user_key = {"id","sex","name","phone","password"};
 
 
     //进入后台首页
@@ -186,8 +186,7 @@ public class UserController {
         user_info[1] = String.valueOf(user.getSex());
         user_info[2] = String.valueOf(user.getName());
         user_info[3] = String.valueOf(user.getPhone());
-        user_info[4] = String.valueOf(user.getPicture());
-        user_info[5] = String.valueOf(user.getPassword());
+        user_info[4] = String.valueOf(user.getPassword());
 
         model.addAttribute("user_info", user_info);
         return "user/userInfo";

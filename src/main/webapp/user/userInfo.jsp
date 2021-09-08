@@ -18,7 +18,7 @@
 
         <%--        id", "性别", "名字", "电话", "头像", "密码--%>
 
-        <c:forEach  var="i" begin="0" end="${length}" >
+        <c:forEach  var="i" begin="0" end="${length-1}" >
             <div class="layui-form-item">
                 <label class="layui-form-label">${user_tag[i]}</label>
                 <div class="layui-input-block">
