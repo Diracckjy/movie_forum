@@ -54,12 +54,13 @@
                     <a href="javascript:;">我的帖子管理</a>
                     <dl class="layui-nav-child">
                         <dd><a target="adminIndex" href="${ctx}/postList?userid=${id}">帖子列表</a></dd>
+                        <dd><a target="adminIndex" href="${ctx}/user/postCommentsAdd?userid=${id}">发表帖子</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">我的帖子评论</a>
                     <dl class="layui-nav-child">
-                        <dd><a target="adminIndex" href="${ctx}/postDetail">评论详情</a></dd>
+                        <dd><a target="adminIndex" href="${ctx}/postDetail?">评论详情</a></dd>
                     </dl>
                 </li>
             </ul>

@@ -16,7 +16,7 @@
 <div class="layui-container" style="margin-top: 50px;">
     <form class="layui-form  layui-form-pane" method="post" action="${ctx}/userUpdate">
 
-        <%--        id", "性别", "名字", "电话", "头像", "密码--%>
+        <%--        id", "性别", "名字", "电话", "年龄", "密码--%>
 
         <c:forEach  var="i" begin="0" end="${length-1}" >
             <div class="layui-form-item">
