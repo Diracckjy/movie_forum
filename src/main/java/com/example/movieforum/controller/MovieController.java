@@ -46,9 +46,14 @@ public class MovieController {
         List<MovieComments> movieCommentsList = movieCommentsMapper.selectList(qw);
         model.addAttribute("movieCommentsList", movieCommentsList);
 
+        if(userId != null && userId!=0){
+            User user = userMapper.selectById(userId);
+            model.addAttribute("user", user);
+            // 更新用户偏好
+            updatePreference(userId, movieId);
+        }
+
 //        if(userId != 0) updatePreference(userId, movieId, 0.005);
-        // 更新用户偏好
-        if(userId != 0) updatePreference(userId, movieId);
         return "movie";
     }
 
@@ -151,8 +156,8 @@ public class MovieController {
         UserPreference userPreference = userPreferenceMapper.selectById(userid);
         if(userPreference != null){ // 更新
             StringBuilder result_kinds = new StringBuilder(userPreference.getKinds());
-            String u_kinds = result_kinds.toString();
-            String m_kinds = movie.getKinds();
+            String u_kinds = result_kinds.toString().trim();
+            String m_kinds = movie.getKinds().trim();
             String[] split = u_kinds.split("/");
             String[] movie_kinds = m_kinds.split("/");
 
@@ -160,13 +165,13 @@ public class MovieController {
                 boolean has = false;
                 // 查重
                 for (String kin: split) {
-                    if(kin.equals(kind)){
+                    if(kin.trim().equals(kind.trim())){
                         has = true;
                         break;
                     }
                 }
                 if (!has){
-                    result_kinds.append("/").append(kind);
+                    result_kinds.append("/").append(kind.trim());
                 }
             }
 

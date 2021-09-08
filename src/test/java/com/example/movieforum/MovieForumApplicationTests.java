@@ -287,6 +287,62 @@ class MovieForumApplicationTests {
     }
 
     @Test
+    void 测试动态显示电影评分(){
+        ArrayList<Movie> movies = getMoviesRandom(8);
+        /*
+        * 满星 2 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+          半星 1<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+           无星 0<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+        * */
+
+        /*
+        * imdbscore = 5.5/10  from 1726 users
+            imdbscore = 7.4/10  from 32150 users
+            imdbscore = 7.2/10 from 102360  users
+            imdbscore = 4.1/10  from 1738 users
+            imdbscore = 7.3/10  from 1639 users
+            imdbscore = 5.5/10 from 865 users
+            imdbscore = 5.5/10  from 8560 users
+            imdbscore = 5.4/10  from 80554 users
+        *
+        * */
+        int [] starts = {0, 0, 0, 0, 0};
+        ArrayList<String> ratings = new ArrayList<String>();
+        for (Movie movie :
+                movies) {
+            String imdbscore = movie.getImdbscore().split("/")[0];
+            StringBuilder rating = new StringBuilder();
+//            System.out.println("imdbscore = " + imdbscore);
+            Double aDouble = Double.valueOf(imdbscore);
+            System.out.println("aDouble = " + aDouble);
+            int v = (int) (aDouble / 2);
+            System.out.println("v = " + v);
+            int v1 = (int) (aDouble % 2);
+            System.out.println("v1 = " + v1);
+            int i = 0;
+            for (; i < v; i++) {
+                starts[i] = 2;
+                rating.append("<li><a href=\"#\"><i class=\"fa fa-star\" aria-hidden=\"true\"></i></a></li>\n");
+            }
+            for(; i < 5; i++){
+                if(v1 >= 1){
+                    starts[i] = 1;
+                    rating.append("<li><a href=\"#\"><i class=\"fa fa-star-half-o\" aria-hidden=\"true\"></i></a></li>\n");
+                    v1 -= 1;
+                }else{
+                    starts[i] = 0;
+                    rating.append("<li><a href=\"#\"><i class=\"fa fa-star-o\" aria-hidden=\"true\"></i></a></li>\n");
+                }
+            }
+            ratings.add(rating.toString());
+            System.out.println("starts = " + Arrays.toString(starts));
+        }
+        for (String rating: ratings) {
+            System.out.println("rating = " + rating);
+        }
+    }
+
+    @Test
     void 测试协同过滤用户推荐() throws TasteException, ClassNotFoundException {
         int userId = 4;
         int n = 2;
@@ -369,5 +425,55 @@ class MovieForumApplicationTests {
         *
         * */
 
+    }
+
+    // 处理电影片名和译名
+    private Movie parseMovieName(Movie movie){
+        //片名
+        String name = movie.getName();
+        name = name.split("/")[0];
+        //译名
+        String translatename = movie.getTranslatename();
+        translatename = translatename.split("/")[0];
+
+        movie.setName(name);
+        movie.setTranslatename(translatename);
+
+        return movie;
+    }
+
+    // 随机获取count部电影
+    private ArrayList<Movie> getMoviesRandom(Integer count){
+        QueryWrapper<Movie> qw = new QueryWrapper<Movie>();
+        // 查出所有电影
+        List<Movie> movieList = movieMapper.selectList(qw);
+        Random random = new Random();
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        // 随机获取8部电影
+        int size = movieList.size();
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < count; i++) {
+            // 只用nextInt()会出现重复
+            int tmp = random.nextInt(size);
+            while (set.contains(tmp)){
+                tmp = random.nextInt(size);
+            }
+            set.add(tmp);
+            movies.add(parseMovieName(movieList.get(tmp)));
+        }
+        return movies;
+    }
+    
+    @Test
+    void 测试模糊模糊匹配(){
+        String kind = "动作";
+        QueryWrapper<Movie> qw = new QueryWrapper<Movie>();
+        qw.like("kinds", kind);
+        List<Movie> movies = movieMapper.selectList(qw);
+        for (Movie movie: movies
+             ) {
+            System.out.println("movie.getKinds() = " + movie.getKinds());
+        }
     }
 }

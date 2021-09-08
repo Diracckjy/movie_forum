@@ -57,7 +57,7 @@
         <!--latest movies start -->
         <div class="w3_agile_latest_movies">
             <div id="owl-demo" class="owl-carousel owl-theme">
-                <c:forEach items = "${movies}" var="movie">
+                <c:forEach items = "${movies}" var="movie" varStatus="loop">
                     <!-- one movie start -->
                     <div class="item">
                         <div class="w3l-movie-gride-agile w3l-movie-gride-slider ">
@@ -73,11 +73,12 @@
                                     <p>${movie.year}</p>
                                     <div class="block-stars">
                                         <ul class="w3l-ratings">
-                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                                                ${movieRatings.get(loop.count-1)}
+<%--                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>--%>
+<%--                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>--%>
+<%--                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>--%>
+<%--                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>--%>
+<%--                                            <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>--%>
                                         </ul>
                                     </div>
                                     <div class="clearfix"></div>
@@ -94,10 +95,10 @@
         </div>
         <!--latest movies end -->
 
-        <h3 class="agile_w3_title"><span>推荐</span> <span>电影</span></h3>
+        <h3 class="agile_w3_title"><span>推荐</span> 电影</h3>
         <!--/requested-movies start -->
         <div class="wthree_agile-requested-movies">
-            <c:forEach items = "${movies2}" var="movie">
+            <c:forEach items = "${movies2}" var="movie" varStatus="loop">
                 <!-- one movie start -->
                 <div class="col-md-2 w3l-movie-gride-agile requested-movies">
                     <a href="${ctx}/movie?movieId=${movie.id}&userId=${userId}" class="hvr-sweep-to-bottom"><img src="${movie.imageurl}" title="Movies Pro"
@@ -113,11 +114,12 @@
                             <p>${movie.year}</p>
                             <div class="block-stars">
                                 <ul class="w3l-ratings">
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                        ${movieRatings1.get(loop.count-1)}
+<%--                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>--%>
+<%--                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>--%>
+<%--                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>--%>
+<%--                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>--%>
+<%--                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>--%>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
